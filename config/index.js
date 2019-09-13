@@ -10,7 +10,7 @@ module.exports = {
     Timeout: process.env.TIMEOUT || 1200000,
     URL: process.env.URL || 'https://integracaonegociafacilclaro.mfmti.com.br/WebService.asmx?wsdl',
     TEMP_DIAS_PROPOSTAWEB:  process.env.TEMP_DIAS_PROPOSTAWEB || 5,
-    maxWorkers: process.env.MAX_WORKERS || 4,
+    maxWorkers: process.env.MAX_WORKERS || 1,
     SaveAllLog: process.env.SAVE_ALL_LOG == "true" || false,
     Trace: process.env.TRACE == "true" || false,
     db: {
