@@ -2,13 +2,10 @@
 Description=Phoenix API  Http Service
 
 [Service]
-WorkingDirectory=/home/ubuntu/phoenix
-ExecStart=node /home/ubuntu/phoenix/app.js
-Restart=always
-RestartSec=10
-StandardOutput=syslog
-StandardError=syslog
-SyslogIdentifier=Phoenix-API
+Environment=NODE_PORT=3000
+Type=simple
+User=ubuntu
+ExecStart=ExecStart=/bin/bash -c '$$(which node) /home/ubuntu/phoenix/app.js'
 
 [Install]
 WantedBy=multi-user.target
