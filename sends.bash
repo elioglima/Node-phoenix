@@ -23,5 +23,3 @@
 #scp -i ~/.ssh/id_rsa.pub USER@SERVER:/home/USER/FILENAME /home/USER/FILENAME
 #ssh -i "KeyServidorAWS01.pem" ubuntu@ec2-18-228-42-87.sa-east-1.compute.amazonaws.com
 
-git commit . -m $0
-git push origin master
