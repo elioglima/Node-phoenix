@@ -7,7 +7,7 @@ Restart=always
 RestartSec=10
 StandardOutput=syslog
 StandardError=syslog
-SyslogIdentifier=nodejs-example
+SyslogIdentifier=Phoenix-API
 
 [Install]
 WantedBy=multi-user.target
