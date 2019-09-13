@@ -2,6 +2,7 @@
 Description=Phoenix API  Http Service
 
 [Service]
+WorkingDirectory=/home/ubuntu/phoenix
 ExecStart=node /home/ubuntu/phoenix/app.js
 Restart=always
 RestartSec=10
