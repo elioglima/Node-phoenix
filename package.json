@@ -1,0 +1,52 @@
+{
+  "name": "apihttp",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./app.js",
+    "debug": "node --inspect app.js"
+  },
+  "dependencies": {
+    "await": "^0.2.6",
+    "axios": "^0.19.0",
+    "base-64": "^0.1.0",
+    "body-parser": "^1.19.0",
+    "bootstrap": "^3.4.1",
+    "cluster": "^0.7.7",
+    "connect": "^3.7.0",
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.5",
+    "cpf_cnpj": "^0.2.0",
+    "crypto": "^1.0.1",
+    "deasync": "^0.1.15",
+    "debug": "~2.6.9",
+    "dom-parser": "^0.1.6",
+    "dotenv": "^8.1.0",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "express-hbs": "^2.1.2",
+    "fs": "0.0.1-security",
+    "helmet": "^3.21.0",
+    "http-errors": "~1.6.2",
+    "logplease": "^1.2.15",
+    "mongoose": "^5.6.13",
+    "morgan": "~1.9.0",
+    "mysql": "^2.17.1",
+    "node-firebird": "^0.8.6",
+    "request": "^2.88.0",
+    "retype": "^0.2.0",
+    "util": "^0.11.1",
+    "xml-js": "^1.6.11",
+    "xml-parser": "^1.2.1",
+    "xml-to-json-stream": "^1.1.0",
+    "xml2js": "^0.4.19",
+    "xmldom": "^0.1.27"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/register": "^7.5.5",
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0"
+  }
+}
