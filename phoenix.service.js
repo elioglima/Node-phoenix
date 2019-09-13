@@ -2,7 +2,7 @@
 Description=Phoenix API  Http Service
 
 [Service]
-ExecStart=/home/ubuntu/phoenix/app.js
+ExecStart=node /home/ubuntu/phoenix/app.js
 Restart=always
 RestartSec=10
 StandardOutput=syslog
