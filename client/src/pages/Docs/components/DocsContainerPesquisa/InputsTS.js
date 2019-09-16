@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import TextField from '../../../components/html/TextField';
+import TextField from './components/TextField';
 
 class Objeto extends Component {
     constructor(props) {

@@ -1,49 +1,76 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as Actions from "./actions/actions";
-import '../css/styles.css';
-import BannerContato from '../components/banner_contato/'
-import MenuOff from '../components/menu-off/'
-import QuemSomos from '../components/quem-somos'
-import * as config from '../../config'
+import './css/styles.css';
+
+import SelectField from '../components/html/SelectField'
+import ButtonField from '../components/html/ButtonField'
+import ImageField from '../components/html/ImageField'
+
+import SenhaAcesso from './components/SenhaAcessoTextField'
+import EMailCadastro from './components/EmailCadastroTextField'
+
+const lista =
+  [
+    { valor: 0, titulo: '' },
+    { valor: 1, titulo: 'Administrador' },
+    { valor: 2, titulo: 'Usuário' },
+  ]
 
 class Objeto extends Component {
-  
-  state = {
-    name:'',
-    pass:'' 
+  constructor(props) {
+    super(props)
+    this.state = {
+      pagina: 1,
+      lista: lista
+    }
   }
 
-  onSubmit = e => {
-    e.preventDefault();
-    var parametros = {
-      N: this.state.name,
-      P: this.state.pass,
-    }
-    this.props.Logar(parametros)    
-  }  
+  ProximaPagina = (e) => {
+    e.preventDefault
+    this.setState({ pagina: this.state.pagina + 1 })
+  }
 
   render() {
+    console.log(this.state.pagina)
+    if (this.state.pagina === 1) {
+      return (
+        <div>
+          <div className="container">
+            <div className="box">
+              <div className='logo'>&nbsp;</div>
+              <div className='inputs'>
+                <SelectField nome="tipo" valor="0" titulo="Tipo de Acesso" options={this.state.lista} />
+                <EMailCadastro nome="email" placeholder='informe o e-mail' valor="" titulo="E-mail Cadastrado" />
+                <ButtonField nome="email" valor="Continuar" onCLick={this.ProximaPagina} />
+                <div className='linha'>
+                  <span className='esquecimeuemail'>esqueci meu email</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    } else if (this.state.pagina === 2) {
+      return (
+        <div>
+          <div className="container">
+            <div className="box">
+              <div className='logo'>&nbsp;</div>
+              <div className='inputs'>
+                <ImageField tipo="circule" img={'./foto.png'} />
+                <SenhaAcesso nome="SenhaAcesso" placeholder='senha de acesso' valor="" titulo="Senha de Acesso" />
+                <ButtonField nome="email" valor="Continuar" onCLick={this.ProximaPagina} />
+                <div className='linha'>
+                  <span className='esquecimeuemail'>esqueci meu email</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    }
+  }
+}
 
-    this.props.Auth_app()    
-    return (
-      <div> 
-        <BannerContato />      
-        <MenuOff {...this.props} label={config.app.titulo} />
-                    
-        <div className="bannerss" ></div>
-        {/* <div className="col-50">
-              <input type="email" placeholder="Enter email" value={base64.decode(this.state.name)} onChange={e => this.setState({name: base64.encode(e.target.value)})} /> 
-              <input type="password" className="mr-sm-2" size="sm" placeholder="Password" value={base64.decode(this.state.pass)} onChange={e => this.setState({pass: base64.encode(e.target.value)})} />
-              <button variant="success" size="sm" type="button" onClick={(e) => this.onSubmit(e)}>Entrar</button>          
-        </div> */}
-
-        <QuemSomos />
-
-
-      </div>
-      );
-      }
-      }
-
-export default connect(null,Actions)(Objeto);
+export default connect(null, Actions)(Objeto);

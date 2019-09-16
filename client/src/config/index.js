@@ -1,9 +1,9 @@
 module.exports = {
     app: {
-        titulo: 'Admin Conductor',
-        email: 'contato@conductor.com.br',
+        titulo: 'PHOENIX',
+        email: 'contato@xpress.com.br', 
         telefone: '(11) 2082-8568 / Whats: (11) 95255-0331',
-        description: 'Sistema Gerenciador de Condominio',
+        description: 'Controle de Dados Online',
         keywords: 'mongodb, express, angularjs, node.js, mongoose, passport'
     },
     apiurl: process.env.REACT_APP_API_URL || 'http:/localhost:3000',

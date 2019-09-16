@@ -1,22 +1,14 @@
-const libsObj = require('../../../../libs/fn_obj')
+const libObj = require('../../../../libs/fn_obj')
 
 module.exports = (req) => {
-    return new Promise((resolve, reject) => {
-        const ModelCadatro = libsObj.Assign(require('../ModelCadastro'))
-        ModelCadatro['Metodo'] = ''
-        let r = libsObj.Parse(req, ModelCadatro)
-
-        retorno = {
-            erro:false,
-            mensagem:"",
-            response: {}
-        }
+    return new Promise((resolve) => {
+        let RetornoClient = libObj.Assign(require('../../../modules/ModeloRetornoClient'))
+        const ModelCadatro = libObj.Assign(require('../ModelCadastro'))
         
-        retorno.erro = false
-        retorno.mensagem = "Sucesso"
-        retorno.response = r
-        resolve(retorno)
-        return 
+        ModelCadatro['Metodo'] = ''
+        let r = libObj.Parse(req, ModelCadatro)
+        RetornoClient.Mensagem = "Sucesso"
+        RetornoClient.Response = r
+        return resolve(RetornoClient)
     });
-  }
-  
+}

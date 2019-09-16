@@ -1,0 +1,39 @@
+.quem-somos {
+    height: 450px;
+    background-color:#303030;
+    color: white; 
+    padding: 30px 30px 30px 20px;  
+}
+
+.quem-somos .titulo {    
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+    font-size: 25px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.quem-somos .qs-texto {    
+    text-align: justify;
+    padding: 10px 20px 10px 5px;
+    font-size: 16px;
+}
+ 
+.quem-somos .descricao  {    
+    padding: 30px 10px 30px 10px;
+}
+
+.quem-somos .descricao .ico {    
+    font-size: 50px;
+    text-align: center;
+}
+
+.quem-somos .descricao .desc_texto {    
+    font-size: 20px;
+}
+
+.quem-somos .copyright {    
+    text-align: center;
+    font-size: 15px;
+    padding-top: 50px;
+}

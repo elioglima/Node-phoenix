@@ -5,12 +5,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let UsuarioSchema = new Schema({
-    EmpresaID: { type: Number, required:true },
+    EmpresaID: { type: Number},
     Data: { type: Date, default: Date.now },
+    Email: { type: String },
     Nome: { type: String },
-    TipoPessoa: { type: Number },
+    TipoPessoaID: { type: Number },
     Doc1: { type: String },
     Doc2: { type: String },
+    CategoriaID: { type: Number},
 }, { collection: 'Usuario' });
 
 let Usuario = mongoose.model('Usuario', UsuarioSchema);
@@ -35,13 +37,6 @@ const Todos = (Dados) => new Promise(async (resolve) => {
     return resolve({ retorno: obj }) 
 })
 
-const FindNome = (Dados) => new Promise(async (resolve) => {
-    const query = Usuario.find({EmpresaID:Dados.EmpresaID, Nome:Dados.Nome})
-    query instanceof mongoose.Query; 
-    const docs =  await query;
-    return resolve({ retorno: docs }) 
-})
-
 const FindId = (Dados) => new Promise(async (resolve) => {
     const query = Usuario.find({EmpresaID:Dados.EmpresaID, _id:Dados._id.toString()})
     query instanceof mongoose.Query; 
@@ -49,13 +44,13 @@ const FindId = (Dados) => new Promise(async (resolve) => {
     return resolve({ retorno: obj }) 
 })
 
-module.exports.Add = (dados) => {
-    return (async (dados) => {  
-        delete dados._id 
-        const model = new Usuario(dados);        
-        model.save()
-    })(dados)
-}
+module.exports.Add = (dados) => new Promise(async (resolve) => {    
+    delete dados._id 
+    const model = new Usuario(dados);   
+    return await model.save()
+            .then(resultado => resolve({RetornoMetodo: {Erro:false, Response:resultado}}))
+            .catch(err => resolve({RetornoMetodo: {Erro:true, Response:err}}))
+})
 
 module.exports.Update = (dados) => new Promise(async (resolve) => {    
     return await Usuario.findById(dados._id, function(err, doc) {              
@@ -79,7 +74,7 @@ module.exports.RemoveID = (_id) => new Promise(async (resolve) => {
     if ((!retorno) || (retorno.length === 0))
         return resolve({RetornoMetodo: {Erro:true, Response:'Registro não existe ::: ' + _id + '.'}})
 
-    return await Usuario.findByIdAndRemove(_id).exec()
+    return await Usuario.findByIdAndDelete(_id).exec()
                     .then(async resultado => {
                         if (resultado === null)
                             return resolve({RetornoMetodo: {
@@ -87,12 +82,12 @@ module.exports.RemoveID = (_id) => new Promise(async (resolve) => {
                                                 Response:'Registro não existe ::: ' + _id + '.'
                                             }})
 
-                        let { retorno } = await FindId(_id)
-                        if ((retorno) || (retorno.length > 0))
-                            return resolve({RetornoMetodo: {
-                                                Erro:true, 
-                                                Response:'Não foi possível remover o registro ::: ' + _id + '.'
-                                            }})
+                        // let { retorno } = await FindId(_id)
+                        // if ((retorno) || (retorno.length > 0))
+                        //     return resolve({RetornoMetodo: {
+                        //                         Erro:true, 
+                        //                         Response:'Não foi possível remover o registro ::: ' + _id + '.'
+                        //                     }})
 
                         return resolve({RetornoMetodo: {
                                             Erro:false, 
@@ -108,14 +103,6 @@ module.exports.RemoveID = (_id) => new Promise(async (resolve) => {
 
 
 
-
-module.exports.LikeNome = (nome) => new Promise(async (resolve) => {
-    const query = Usuario.find({EmpresaID: dados.EmpresaID, Nome:new RegExp(nome, 'i')})
-    query instanceof mongoose.Query; 
-    const docs =  await query;
-    return resolve({ retorno: docs }) 
-})
-
 module.exports.FindCPF = (value) => new Promise(async (resolve) => {
     const retorno = Usuario.find({Doc1:value})
     return resolve({ retorno }) 
@@ -128,6 +115,37 @@ module.exports.LikeCPF = (value) => new Promise(async (resolve) => {
     return resolve({ retorno: docs }) 
 })
 
-module.exports.FindNome = (Dados) => FindNome(Dados)
-module.exports.Todos = (Dados) => Todos(Dados)
+const FindNome = (Dados) => new Promise(async (resolve) => {
+    const query = Usuario.find({EmpresaID:Dados.EmpresaID, Nome:Dados.Nome})
+    query instanceof mongoose.Query; 
+    const docs =  await query;
+    return resolve({ retorno: docs }) 
+})
+
+const LikeNome = (dados) => new Promise(async (resolve) => {
+    const query = Usuario.find({EmpresaID: dados.EmpresaID, Nome:new RegExp(dados.nome, 'i')})
+    query instanceof mongoose.Query; 
+    const docs =  await query;
+    return resolve({ retorno: docs }) 
+})
+
+const FindMail = (Dados) => new Promise(async (resolve) => {
+    const query = Usuario.find({EmpresaID:Dados.EmpresaID, Email:Dados.Email})
+    query instanceof mongoose.Query; 
+    const docs =  await query;
+    return resolve({ retorno: docs }) 
+})
+
+const LikeMail = (dados) => new Promise(async (resolve) => {
+    const query = Usuario.find({EmpresaID: dados.EmpresaID, Email:new RegExp(dados.Email, 'i')})
+    query instanceof mongoose.Query; 
+    const docs =  await query;
+    return resolve({ retorno: docs }) 
+})
+
 module.exports.FindId = FindId
+module.exports.Todos = (Dados) => Todos(Dados)
+module.exports.FindNome = (Dados) => FindNome(Dados)
+module.exports.LikeNome = (Dados) => LikeNome(Dados)
+module.exports.FindMail = (Dados) => FindMail(Dados)
+module.exports.LikeMail = (Dados) => LikeMail(Dados)

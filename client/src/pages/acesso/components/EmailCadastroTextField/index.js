@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import './index.css'
+import '../../../components/css/TextField/index.css'
 
 class Objeto extends Component {
     constructor(props) {
@@ -18,18 +18,15 @@ class Objeto extends Component {
         }
     }
 
-    componentDidMount = () => {
-        this.props.onAutoChange(this.state.id, this.state.valor)
-    }
-
-    onChange = (e) => {                
-        this.setState({valor:e.target.value})
-        this.props.onChange(e, this.state.id, e.target.value)
+    onChange = (e) => {
+        this.setState({
+            valor:e.target.value
+        }) 
     }
 
     render() {  
         return (
-            <div key={this.props.key} className="CompReactTextFieldControl" >
+            <div key={this.props.id} className="CompReactTextFieldControl" >
                 <div className="CompReactTextFieldControlLabel" >{this.state.titulo}</div>
                 <div className="CompReactTextFieldControlInput">
                     <input  

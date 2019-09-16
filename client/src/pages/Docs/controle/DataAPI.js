@@ -272,6 +272,7 @@ export const DataAPI =  [
         "Id":3,
         "Titulo":"Cadastro de Usuários",
         "Itens":[
+
             {
                 "Id":1,
                 "Titulo":"Pesquisa Todos Usuários",
@@ -290,6 +291,30 @@ export const DataAPI =  [
                 ]
             },{
                 "Id":2,
+                "Titulo":"Pesquisa de Usuário por _ID",
+                "Metodo":"POST",
+                "URL":"usuarios/pesquisar/codigo",
+                "Parametros":[
+                    {
+                        "titulo":"Código da Empresa",
+                        "nome":"EmpresaID",
+                        "tipo":"number",
+                        "tamanho":45,
+                        "placeholder":"Código da Empresa",
+                        "requerido":true,
+                        "valor":1
+                    }, {
+                        "titulo":"ID do usuário",
+                        "nome":"_id",
+                        "tipo":"text",
+                        "tamanho":70,
+                        "placeholder":"5d7f8aa6c56b7035887d1717",
+                        "requerido":true,
+                        "valor":""
+                    } 
+                ]
+            },{
+                "Id":3,
                 "Titulo":"Pesquisa de Usuário por nome",
                 "Metodo":"POST",
                 "URL":"usuarios/pesquisar/nome",
@@ -309,11 +334,17 @@ export const DataAPI =  [
                         "tamanho":45,
                         "placeholder":"nome do usuario",
                         "requerido":true,
-                        "valor":"Elio"
+                        "valor":"Roberto"
+                    } , {
+                        "nome":"metodo",
+                        "tipo":"hidden",
+                        "tamanho":45,
+                        "requerido":true,
+                        "valor":"like"
                     }
                 ]
             },{
-                "Id":3,
+                "Id":4,
                 "Titulo":"Pesquisa de Usuário por código",
                 "Metodo":"POST",
                 "URL":"usuarios/pesquisar/codigo",
@@ -337,7 +368,7 @@ export const DataAPI =  [
                     }
                 ]
             },{
-                "Id":4,
+                "Id":5,
                 "Titulo":"Pesquisa de Usuário por e-mail",
                 "Metodo":"POST",
                 "URL":"usuarios/pesquisar/email",
@@ -357,11 +388,77 @@ export const DataAPI =  [
                         "tamanho":45,
                         "placeholder":"email do usuario",
                         "requerido":true,
-                        "valor":"diretoria@maxtime.info"
+                        "valor":"contato@gmail.com"
                     }
                 ]
-            },{
-                "Id":5,
+            }, 
+            {
+                "Id":7,
+                "Titulo":"Novo Usuário",
+                "Metodo":"POST",
+                "URL":"usuarios/novo",
+                "Parametros":[
+                    {
+                        "titulo":"Código da Empresa",
+                        "nome":"EmpresaID",
+                        "tipo":"number",
+                        "tamanho":45,
+                        "placeholder":"Código da Empresa",
+                        "requerido":true,
+                        "valor":1
+                    }, {
+                        "titulo":"E-mail",
+                        "nome":"email",
+                        "tipo":"email",
+                        "tamanho":45,
+                        "placeholder":"email do usuario",
+                        "requerido":true,
+                        "valor":"contato@gmail.com"
+                    },{
+                        "titulo":"Nome Completo",
+                        "nome":"nome",
+                        "tipo":"text",
+                        "tamanho":45,
+                        "placeholder":"nome do usuario",
+                        "requerido":true,
+                        "valor":"Roberto Silva"
+                    },{
+                        "titulo":"Tipo de Pessoa",
+                        "nome":"TipoPessoaID",
+                        "tipo":"number",
+                        "tamanho":45,
+                        "placeholder":"tipo de pessoa",
+                        "requerido":true,
+                        "valor":"0"
+                    },{
+                        "titulo":"CPF/ CNPJ",
+                        "nome":"doc1",
+                        "tipo":"text",
+                        "tamanho":45,
+                        "placeholder":"CPF/ CNPJ",
+                        "requerido":true,
+                        "valor":"216.399.218-77"
+                    },{
+                        "titulo":"RG/ IE",
+                        "nome":"doc2",
+                        "tipo":"text",
+                        "tamanho":45,
+                        "placeholder":"RG/ IE",
+                        "requerido":true,
+                        "valor":"32.166.631-8"
+                    },{
+                        "titulo":"Categoria ID",
+                        "nome":"CategoriaID",
+                        "tipo":"number",
+                        "tamanho":45,
+                        "placeholder":"categoria",
+                        "requerido":true,
+                        "valor":"0"
+                    }
+                ]
+            }, 
+            {
+                "Id":8,
                 "Titulo":"Atualizar Usuário",
                 "Metodo":"POST",
                 "URL":"usuarios/atualizar",
@@ -434,70 +531,6 @@ export const DataAPI =  [
                 ]
             },{
                 "Id":6,
-                "Titulo":"Novo Usuário",
-                "Metodo":"POST",
-                "URL":"usuarios/novo",
-                "Parametros":[
-                    {
-                        "titulo":"Código da Empresa",
-                        "nome":"EmpresaID",
-                        "tipo":"number",
-                        "tamanho":45,
-                        "placeholder":"Código da Empresa",
-                        "requerido":true,
-                        "valor":1
-                    }, {
-                        "titulo":"E-mail",
-                        "nome":"email",
-                        "tipo":"email",
-                        "tamanho":45,
-                        "placeholder":"email do usuario",
-                        "requerido":true,
-                        "valor":"contato@gmail.com"
-                    },{
-                        "titulo":"Nome Completo",
-                        "nome":"nome",
-                        "tipo":"text",
-                        "tamanho":45,
-                        "placeholder":"nome do usuario",
-                        "requerido":true,
-                        "valor":"Roberto Silva"
-                    },{
-                        "titulo":"CPF/ CNPJ",
-                        "nome":"doc1",
-                        "tipo":"text",
-                        "tamanho":45,
-                        "placeholder":"CPF/ CNPJ",
-                        "requerido":true,
-                        "valor":"216.399.218-77"
-                    },{
-                        "titulo":"RG/ IE",
-                        "nome":"doc2",
-                        "tipo":"text",
-                        "tamanho":45,
-                        "placeholder":"RG/ IE",
-                        "requerido":true,
-                        "valor":"32.166.631-8"
-                    },{
-                        "titulo":"Tipo de Pessoa",
-                        "nome":"TipoPessoaID",
-                        "tipo":"number",
-                        "tamanho":45,
-                        "placeholder":"tipo de pessoa",
-                        "requerido":true,
-                        "valor":"0"
-                    },{
-                        "titulo":"Categoria ID",
-                        "nome":"CategoriaID",
-                        "tipo":"number",
-                        "tamanho":45,
-                        "placeholder":"categoria",
-                        "requerido":true,
-                        "valor":"0"
-                    }
-                ]
-            },{
-                "Id":7,
                 "Titulo":"Apagar cadastro de usuário",
                 "Metodo":"POST",
                 "URL":"usuarios/apagar",
@@ -511,13 +544,13 @@ export const DataAPI =  [
                         "requerido":true,
                         "valor":1
                     },{
-                        "titulo":"Código",
-                        "nome":"id",
-                        "tipo":"number",
+                        "titulo":"_id",
+                        "nome":"_id",
+                        "tipo":"text",
                         "tamanho":45,
-                        "placeholder":"codigo do usuario",
+                        "placeholder":"5d7fe255637762402c651b0f",
                         "requerido":true,
-                        "valor":"2"
+                        "valor":""
                     }
                 ]
             }

@@ -50,8 +50,8 @@ class Objeto extends Component {
                     {
                         "ResponseAPI":{
                             Status:res.Status,
-                            Mensagem:res.body.Msg,
-                            Dados:res.body.Dados,
+                            Mensagem:res.body.Mensagem,
+                            Dados:res.body.Response,
                         },
                         "ResponseAPIID":item.Id
                     })
@@ -62,7 +62,7 @@ class Objeto extends Component {
                         "ResponseAPI":{
                             Status:erro.Status,
                             Mensagem:erro.Response.message,
-                            Dados:erro.body.Dados,
+                            Dados:erro.body.Response,
                         },
                         "ResponseAPIID":item.Id
                     })

@@ -1,0 +1,49 @@
+
+.container {
+    width: 98vw;
+    height: 98vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.box {
+    width: 650px;
+    height: 290px;
+}
+
+.box .linha {
+    float: left;
+    width: 98%;
+    text-align: right;
+    padding: 10px 0px 5px 5px;    
+}
+
+.box .linha .esquecimeuemail {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 'Light';
+    color: #0683F5;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.box .logo {
+    float: left;
+    width: 47%;
+    height: 97%;
+    margin-right: 2%; 
+    background: url('./logo.png') no-repeat;
+    background-size: 100%;
+    background-position: 60% 25%;
+    border-right: 1px solid black;
+}
+
+.box .inputs {
+    float: left;
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+    padding-top: 15px;
+}
