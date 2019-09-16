@@ -11,6 +11,18 @@ module.exports.Valida = (value) => {
     return false
 }
 
+module.exports.ValidaCPF = (value) => {
+    if (!value) return false
+    const checkCpf = value.replace(/[^0-9]/g, '');
+    return (CPF.isValid(checkCpf))
+}
+
+module.exports.ValidaCNPJ = (value) => {
+    if (!value) return false
+    const checkCpf = value.replace(/[^0-9]/g, '');
+    return (CNPJ.isValid(checkCpf))
+}
+
 module.exports.FormatDoc = (value) => {
 
     if (!value) return 'CPF/CNPJ não informado';
@@ -25,3 +37,4 @@ module.exports.FormatDoc = (value) => {
 
     return "Documento inválido"
 }
+

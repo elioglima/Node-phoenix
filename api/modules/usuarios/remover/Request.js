@@ -1,20 +1,22 @@
 const libsObj = require('../../../../libs/fn_obj')
-
 module.exports = (req) => {
     return new Promise((resolve, reject) => {
-        const ModelCadatro = libsObj.Assign(require('../ModelCadastro'))
-        ModelCadatro['Metodo'] = ''
-        let r = libsObj.Parse(req, ModelCadatro)
+        
+        const ModelCadatro = {
+            _id:'',
+        }
 
+        let r = libsObj.Parse(req, ModelCadatro)
+      
         retorno = {
             erro:false,
             mensagem:"",
             response: {}
         }
         
-        if (!r.Nome) {
+        if (!r._id) {
             retorno.erro = true
-            retorno.mensagem = "Informe :: (Nome)"
+            retorno.mensagem = "Informe :: (_id)"
             reject(retorno)
             return 
         } 
