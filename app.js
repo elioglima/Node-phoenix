@@ -37,11 +37,7 @@ Object.defineProperty(global, '__function', {
   }
 });
 
-
-
-
 if (cluster.isMaster) {
-  // Fork workers.
   for (var i = 0; i < cpus; i++) {
     const worker = cluster.fork();
   }

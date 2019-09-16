@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 
-// const Cobranca = require('./routes/Cobranca')
-// router.use('/Cobranca', Cobranca);
+const usuarios = require('./routes/usuarios')
+router.use('/usuarios', usuarios);
 
 module.exports = router;
