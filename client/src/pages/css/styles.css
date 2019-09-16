@@ -1,0 +1,143 @@
+
+body {
+    margin: 0;    
+    font-family: 'Open Sans',sans-serif, 'Courier New', Courier, monospace;    
+    
+}
+
+.bannerss {
+    background: url('./fundotela2.jpg') no-repeat center center fixed; 
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+   height: 200px;
+}
+
+
+
+
+.divisao {
+    padding-top: 1px;
+    background-color: #28a7e9;
+}
+
+.col-10 {
+    display: inline-block;
+    width: 10%;
+}
+
+.col-20 {
+    display: inline-block;
+    width: 20%;
+}
+
+.col-30 {
+    display: inline-block;
+    width: 30%;
+}
+
+.col-32 {
+    display: inline-block;
+    width: 32%;
+}
+
+.col-33 {
+    display: inline-block;
+    width: 33%;
+}
+
+.col-35 {
+    display: inline-block;
+    width: 35%;
+}
+
+.col-40 {
+    display: inline-block;
+    width: 40%;
+}
+.col-50 {
+    display: inline-block;
+    width: 50%;
+}
+
+.col-60 {
+    display: inline-block;
+    width: 60%;
+}
+
+.col-70 {
+    display: inline-block;
+    width: 70%;
+}
+
+.col-80 {
+    display: inline-block;
+    width: 80%;
+}
+
+.col-90 {
+    display: inline-block;
+    width: 90%;
+}
+
+.col-100 {
+    display: inline-block;
+    width: 100%;
+}
+
+nav {    
+    background-color: rgb(31, 29, 29);
+    padding: 10px 10px 10px 10px;
+}
+
+nav .title {
+    display: inline-block;
+    width: 20%;
+}
+
+nav .title a {
+    color: aliceblue;
+    text-decoration: none;
+    padding: 0 5px 0 5px;    
+}
+
+nav .login {
+    display: inline-block;
+    width: 80%;
+    text-align: right;    
+}
+
+nav .login input {
+    margin-right: 10px;
+    border: none;
+    padding: 5px;   
+    border-radius: 3px;
+} 
+
+nav .login button {
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    font-weight: bolder;
+    padding: 5px 10px;
+    margin-right: 3px;
+}
+
+nav .login button:hover {
+    background: white;
+    color: black;
+    cursor: pointer;
+    font-weight: bolder;
+    padding: 5px 10px;
+}
+
+nav .login button:active {
+    background: whitesmoke;
+}
+
+.cor_azul {
+    color: #28a7e9;
+}

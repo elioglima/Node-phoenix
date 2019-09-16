@@ -1,0 +1,208 @@
+
+.ChamadaAtendimentoBase {
+    position: fixed;
+    z-index: 1000;    
+    bottom: 10px;
+    left: 10px;  
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+
+}
+
+.ChamadaAtendimentoBase img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100px;
+    height: 100px;
+}
+
+.fundoolho {
+    position: absolute;
+    background-color: rgb(85, 173, 255);
+    top: 48px;
+    left: 20px;
+    width: 60px;
+    height: 4px;
+    animation: piscaolho infinite 20s;
+
+}
+
+.olhoazul, .olhobranco {
+    animation: olho infinite 20s;
+
+}
+
+.antena {
+    animation: anteninha infinite 20s;
+}
+
+@keyframes olho {
+    0% {
+      left: 10px;
+    }
+    
+    5% {
+        left: 10px;
+    }
+
+    15% {
+        left: 3px;
+    }
+    
+    20% {
+        left: 3px;
+    }
+
+    30% {
+        left: 16px;
+    }
+
+    30% {
+        left: 16px;
+    }
+
+    40% {
+        left: 10px;
+    }
+
+    100% {
+        left: 10px;
+    }
+}
+
+@keyframes piscaolho {
+    0% {
+        height: 4px;
+        background-color: rgb(164, 211, 255);
+    }
+
+    18% {
+        height: 4px;
+        background-color: rgb(164, 211, 255);
+    }
+
+    20% {
+        background-color: rgb(85, 173, 255);
+        height: 4px;
+    }
+
+    21% {
+        height: 25px;
+    }
+
+    21.5% {
+        height: 4px;
+    }
+
+    60% {
+        height: 4px;
+    }
+
+    61% {
+        height: 25px;
+    }
+
+    61.5% {
+        height: 4px;
+    }
+
+
+    90% {
+        height: 4px;
+    }
+    91% {
+        height: 25px;
+    }
+
+    91.5% {
+        height: 4px;
+    }
+
+
+}
+
+@keyframes anteninha {
+    
+    0% {
+          transform: rotate(0deg)
+      }
+
+      40% {
+        transform: rotate(0deg)
+      }
+     
+  
+      41% {
+        transform: rotate(10deg)
+      }
+
+      42% {
+        transform: rotate(-10deg)
+      }
+
+      43% {
+        transform: rotate(10deg)
+      }
+
+      44% {
+        transform: rotate(-10deg)
+      }
+
+      45% {
+        transform: rotate(10deg)
+      }
+
+      46% {
+        transform: rotate(-10deg)
+      }
+
+      47% {
+        transform: rotate(10deg)
+      }
+
+      48% {
+        transform: rotate(0deg)
+      }      
+
+      70% {
+          transform: rotate(0deg)
+      }
+
+      71% {
+        transform: rotate(10deg)
+      }
+
+      72% {
+        transform: rotate(-10deg)
+      }
+
+      73% {
+        transform: rotate(10deg)
+      }
+
+      74% {
+        transform: rotate(-10deg)
+      }
+
+      75% {
+        transform: rotate(10deg)
+      }
+
+      76% {
+        transform: rotate(-10deg)
+      }
+
+      77% {
+        transform: rotate(10deg)
+      }
+
+      78% {
+        transform: rotate(0deg)
+      } 
+  
+      100% {
+        transform: rotate(0deg)
+      }
+}

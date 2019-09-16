@@ -1,0 +1,23 @@
+.menu-off {
+    background-color:white;
+    color: #777; 
+    padding: 10px 20px 10px 20px;   
+}
+
+.menu-off .titulo {
+    color: #777; 
+    font-size: 25px;
+    line-height: 1.42857143;
+    font-weight: 200;
+    padding-right: 5px;
+}
+
+.menu-off .base-right {
+    text-align: right;
+}
+
+
+.menu-off .item {
+    padding-left: 15px; 
+    letter-spacing: 1px;
+}

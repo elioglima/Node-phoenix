@@ -1,0 +1,30 @@
+.RButtonDashBase {
+    display: inline-block;
+    width: 20%;
+    padding: 7px 7px 7px 7px;
+}
+
+.RButtonDashBase2 {
+    display: inline-block;
+    padding: 2% 2% 2% 2%;
+    width: 96%;
+    background-color: rgb(97, 142, 194);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.RButtonDashBase2:hover {
+    background-color: rgb(139, 175, 216);
+}
+
+.RButtonDashBase2:active {
+    background-color: rgb(63, 84, 107);
+}
+
+.RButtonDashBase .RButtonDashBase2 .RButtonDashTitulo {
+    display: inline-block;
+    padding: 1% 1% 1% 1%;
+    width: 100%;
+    text-align: center;
+}

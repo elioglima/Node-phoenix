@@ -1,0 +1,25 @@
+.banner-contato {
+    background-color:#303030;
+    color: white; 
+    padding: 30px 20px 30px 20px;   
+}
+
+.banner-contato .titulo {
+    font-size: 14px;
+    line-height: 1.42857143;
+    font-weight: 600;
+    padding-right: 5px;
+}
+
+.banner-contato .texto {
+    font-size: 12px;
+    line-height: 1.42857143;
+    font-weight: 300;
+    padding-right: 5px;
+}
+
+.banner-contato i {
+    font-size: 11px;
+    color: #28a7e9;
+    padding-right: 5px;
+}

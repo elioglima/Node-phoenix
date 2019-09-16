@@ -1,0 +1,13 @@
+
+.ChatBotBase {
+  position: fixed;
+  bottom: 1%;
+  right: 1%;
+  background-color: white;
+  height: 600px;
+  width: 320px;
+  border-radius: 10px;
+  border: 1px;
+  border-style: solid;
+  border-color: rgb(190, 197, 209);  
+}

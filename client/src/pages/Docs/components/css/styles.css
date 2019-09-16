@@ -1,0 +1,133 @@
+
+.docs-base {
+    position: inherit;
+    width: 100%;
+    height: 100%;
+
+}
+
+.docs-base .docs-menu-lateral {
+    display: inline-block;
+    top:0;
+    width: 98%;
+    height: 100%;
+    padding-top: 5px;
+    padding: 10px 10px 10px 10px;
+}
+
+.docs-base .docs-menu-lateral .docs-menu-lateral-item {
+    font-family: sans-serif;
+    display: inline-block;
+    width: 20%;
+    padding: 5px 5px 5px 5px;
+    
+}
+
+.docs-base .docs-menu-lateral .docs-menu-lateral-item .docs-menu-lateral-item-base {
+    font-family: sans-serif;
+    display: inline-block;
+    width: 95%;
+    height: 100%;
+    background-color: rgb(68, 93, 133);
+    padding: 8px 5px 8px 8px;
+    border-bottom: 1px solid rgb(102, 127, 168);
+    border-right: 1px solid rgb(102, 127, 168);
+    color: white;
+    border-spacing: 2px;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 10px;    
+}
+
+.docs-base .docs-menu-lateral .docs-menu-lateral-item .docs-menu-lateral-item-base .docs-menu-lateral-item-titulo {
+    display: inline-block;
+    width: 80%;
+    padding:5px 5px 5px 5px;
+    text-align: center;
+
+}
+
+.docs-base .docs-menu-lateral .docs-menu-lateral-item:hover {
+    border-radius: 10px;
+    background-color: rgb(106, 135, 180);
+}
+
+.docs-base .docs-menu-lateral .docs-menu-lateral-item:active {
+    border-radius: 10px;
+    background-color: rgb(25, 40, 66);
+    color: rgb(86, 116, 163);
+}
+
+.docs-base .docs-container {
+    width: 97%;
+    display: inline-block;
+    color: black;
+    padding-left: 20px;
+    padding-top: 10px;
+    font-size: 20px;
+}
+
+.docs-base .docs-container .docs-container-titulo {
+    display: inline-block;
+    width: 100%;
+    color: black;
+    padding: 5px 5px 5px 0;
+}
+
+.docs-base .docs-container .docs-container-metodo-base {
+    display: inline-block;
+    width: 97%;
+    color: black;
+    padding: 10px 10px 10px 10px;
+    font-size: 14px;
+    border: 1px solid rgb(154, 177, 219);
+    margin-bottom: 10px;
+    border-radius: 10px;
+
+}
+
+.docs-base .docs-container .docs-container-metodo-base .docs-container-metodo-titulo {
+    display: inline-block;
+    width: 100%;
+    color: black;
+    padding: 5px 5px 5px 0;
+    font-size: 14px;
+}
+
+.docs-base .docs-container .docs-container-metodo-base .docs-container-metodo-url {
+    display: inline-block;
+    width: 100%;
+    color: grey;
+    padding: 5px 5px 5px 0;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+
+.docs-base .docs-container .docs-container-metodo-base .docs-container-metodo-titulo .POST {
+    display: inline-block;
+    color: green;
+    font-weight: bold;
+    padding: 0 10px 0 0; 
+    font-size: 13px;
+}
+
+.docs-base .docs-container .docs-container-metodo-base .docs-container-metodo-input {
+    width: 100%;
+    background-color: black;
+}
+
+.docs-base .docs-container .docs-container-metodo-base .docs-container-metodo-botoes {
+    display: inline-block;
+    width: 100%;
+    text-align: right;
+    border-top: 1px solid black;
+    margin-top: 5px;
+    padding-top: 5px;
+
+}
+
+.docs-base .docs-container .docs-container-metodo-base .docs-container-metodo-resposta {
+    word-wrap: break-word;
+}
