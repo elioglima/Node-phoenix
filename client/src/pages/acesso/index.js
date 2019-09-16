@@ -59,7 +59,7 @@ class Objeto extends Component {
               <div className='logo'>&nbsp;</div>
               <div className='inputs'>
                 <ImageField tipo="circule" img={'./foto.png'} />
-                <SenhaAcesso nome="SenhaAcesso" placeholder='senha de acesso' valor="" titulo="Senha de Acesso" />
+                <SenhaAcesso tipo={'password'} nome="SenhaAcesso" placeholder='senha de acesso' valor="" titulo="Senha de Acesso" />
                 <ButtonField nome="email" valor="Continuar" onCLick={this.ProximaPagina} />
                 <div className='linha'>
                   <span className='esquecimeuemail'>esqueci meu email</span>
