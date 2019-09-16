@@ -4,7 +4,7 @@ module.exports = {
         description: 'API Phenix 1.0',
         keywords: 'mongodb, express, angularjs, node.js, mongoose, passport'
     },
-    port: process.env.PORT || 3000,
+    port: process.env.PORT || 5225,
     secretToken: process.env.SECRET_TOKEN || 'no token',
     ChaveAcesso: process.env.CHAVE_ACESSO || '',
     Timeout: process.env.TIMEOUT || 1200000,

@@ -276,7 +276,7 @@ export const DataAPI =  [
                 "Id":1,
                 "Titulo":"Pesquisa Todos Usuários",
                 "Metodo":"POST",
-                "URL":"usuario/pesquisa/todos",
+                "URL":"usuarios/pesquisar/todos",
                 "Parametros":[
                     {
                         "titulo":"Código da Empresa",
@@ -292,7 +292,7 @@ export const DataAPI =  [
                 "Id":2,
                 "Titulo":"Pesquisa de Usuário por nome",
                 "Metodo":"POST",
-                "URL":"usuario/pesquisa/nome",
+                "URL":"usuarios/pesquisar/nome",
                 "Parametros":[
                     {
                         "titulo":"Código da Empresa",
@@ -316,7 +316,7 @@ export const DataAPI =  [
                 "Id":3,
                 "Titulo":"Pesquisa de Usuário por código",
                 "Metodo":"POST",
-                "URL":"usuario/pesquisa/codigo",
+                "URL":"usuarios/pesquisar/codigo",
                 "Parametros":[
                     {
                         "titulo":"Código da Empresa",
@@ -328,8 +328,8 @@ export const DataAPI =  [
                         "valor":1
                     }, {
                         "titulo":"Código",
-                        "nome":"id",
-                        "tipo":"number",
+                        "nome":"_id",
+                        "tipo":"text",
                         "tamanho":45,
                         "placeholder":"codigo do usuario",
                         "requerido":true,
@@ -340,7 +340,7 @@ export const DataAPI =  [
                 "Id":4,
                 "Titulo":"Pesquisa de Usuário por e-mail",
                 "Metodo":"POST",
-                "URL":"usuario/pesquisa/email",
+                "URL":"usuarios/pesquisar/email",
                 "Parametros":[
                     {
                         "titulo":"Código da Empresa",
@@ -364,7 +364,7 @@ export const DataAPI =  [
                 "Id":5,
                 "Titulo":"Atualizar Usuário",
                 "Metodo":"POST",
-                "URL":"usuario/atualizar",
+                "URL":"usuarios/atualizar",
                 "Parametros":[
                     {
                         "titulo":"Código da Empresa",
@@ -436,7 +436,7 @@ export const DataAPI =  [
                 "Id":6,
                 "Titulo":"Novo Usuário",
                 "Metodo":"POST",
-                "URL":"usuario/novo",
+                "URL":"usuarios/novo",
                 "Parametros":[
                     {
                         "titulo":"Código da Empresa",
@@ -500,7 +500,7 @@ export const DataAPI =  [
                 "Id":7,
                 "Titulo":"Apagar cadastro de usuário",
                 "Metodo":"POST",
-                "URL":"usuario/apagar",
+                "URL":"usuarios/apagar",
                 "Parametros":[
                     {
                         "titulo":"Código da Empresa",

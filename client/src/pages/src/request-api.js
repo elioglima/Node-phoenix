@@ -6,7 +6,7 @@ export const RAPI = (uri, params) => {
       
       function(resolve, reject) { 
         
-        const URLS = 'http://localhost:2000'+'/api/'+uri
+        const URLS = 'http://localhost:5225'+'/api/'+uri
         const request = require('request');
         const base64 = require('base-64');
         
@@ -15,7 +15,6 @@ export const RAPI = (uri, params) => {
             Response:'',
             body:{}
         }
-
         try {         
               const options = {
                 url: URLS,
@@ -38,7 +37,7 @@ export const RAPI = (uri, params) => {
                     retorno.Response = response.statusMessage
                     reject(retorno)
                   }
-                
+
                   retorno.Status = response.statusCode 
                   retorno.Response = response.statusMessage
                   retorno.body = body

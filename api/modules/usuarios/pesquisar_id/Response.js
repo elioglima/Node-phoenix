@@ -2,17 +2,17 @@ const DBUsuario = require('../../../../db/models/Usuarios')
 const libObj = require('../../../../libs/fn_obj')
 
 module.exports = async (Dados) => {
-  let ModelCadastro = libObj.Assign(require('../ModelCadastro'))
-  let Registros 
+  let ModelCadastro = require('../ModelCadastro')
+  const { retorno } = await DBUsuario.FindId(Dados)
+  let Registros = libObj.Parse(retorno, ModelCadastro)
 
-  if (Dados.Metodo.toLowerCase() === 'like') {
-    const { retorno } = await DBUsuario.LikeNome(Dados)
-    Registros = libObj.Parse(retorno, ModelCadastro)
-  } else {
-    const { retorno } = await DBUsuario.FindNome(Dados)
-    Registros = libObj.Parse(retorno, ModelCadastro)
+  if (!Registros) {
+    return { 
+      TotalRegistros:  0,
+      Registros: {}, 
+    }
   }
-  
+
   let RetornoReponse = {
     Status: 200,
     Msg:'Nenhum resultado localizado',
@@ -37,4 +37,4 @@ module.exports = async (Dados) => {
   }
   
   return RetornoReponse
-}
+} 
