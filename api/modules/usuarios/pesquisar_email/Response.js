@@ -14,7 +14,7 @@ module.exports = async (Dados) => {
     Registros = libObj.Parse(retorno, ModelCadastro)
   }
 
-  RetornoClient.Mensagem = 'Nenhum resultado localizado'
+  RetornoClient.Mensagem = 'Nenhum usuário localizado'
   RetornoClient.Response = {
     TotalRegistros: 0,
     Registros: [],

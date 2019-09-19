@@ -25,7 +25,7 @@ class Objeto extends Component {
                         id={this.state.id}
                         name={this.state.id}
                         onClick={e=>this.onClick(e)}
-                    >{this.state.valor}</button>
+                    >{this.state.valor}</button>                    
                 </div>
             </div>
         )

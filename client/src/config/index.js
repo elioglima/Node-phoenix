@@ -6,7 +6,7 @@ module.exports = {
         description: 'Controle de Dados Online',
         keywords: 'mongodb, express, angularjs, node.js, mongoose, passport'
     },
-    apiurl: process.env.REACT_APP_API_URL || 'http:/localhost:3000',
+    apiurl: process.env.REACT_APP_API_URL || 'http:/localhost:5525',
     Timeout: process.env.TIMEOUT || 1200000,
     maxWorkers: process.env.MAX_WORKERS || 4
 }

@@ -19,9 +19,11 @@ class Objeto extends Component {
     }
 
     onChange = (e) => {
-        this.setState({
-            valor:e.target.value
-        }) 
+        e.preventDefault()
+        this.setState({valor:e.target.value}) 
+
+        if (!this.props.onChange) return
+        this.props.onChange(e)
     }
 
     render() {  
@@ -38,8 +40,8 @@ class Objeto extends Component {
                         onChange={e => this.onChange(e)} 
                         placeholder={this.state.placeholder}
                         />
+                    <span className="CompReactTextFieldControlLabelErro" >{this.props.MsgErro}</span>
                 </div>
-                {/* { this.state.erro.length > 0 && <div className="CompReactTextFieldControlError" > </div> && "" } */}
                 
             </div>
         )

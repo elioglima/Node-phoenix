@@ -15,17 +15,26 @@ class Objeto extends Component {
         }
     }
 
+    onChange = (e) => {
+        if (!this.props.onChange) return
+        e.preventDefault()        
+        this.props.onChange(e)
+    }
+
     render() {
         return (
             <div className="CompReactSelectFieldControl" >
                 <div className="CompReactSelectFieldControlLabel" >{this.state.titulo}</div>
                 <div className="CompReactSelectFieldControlInput">
-                    <select>
-
+                    <select onChange={this.onChange} >
                         {
                             this.props.options.map((item, key) => {
+                                const selected = this.state.valor==item.valor ? 'selected' : ' ' 
+                                
                                 return (
-                                    <option key={"div" + key} value={item.valor} >
+                                    <option 
+                                        key={"div" + key} 
+                                        value={item.valor} >                                            
                                         {item.titulo}
                                     </option>
                                 )
@@ -33,7 +42,9 @@ class Objeto extends Component {
                         }
 
                     </select>
+                    <span className="CompReactSelectFieldControlLabelErro" >{this.props.MsgErro}</span>
                 </div>
+                
             </div>
         )
     }

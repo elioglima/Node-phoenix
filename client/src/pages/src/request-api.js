@@ -1,4 +1,3 @@
-import { push } from "connected-react-router"
 
 export const RAPI = (uri, params) => {
 
@@ -17,7 +16,7 @@ export const RAPI = (uri, params) => {
         Mensagem: '',
         Response: {}
       }
-
+      console.log(URLS)
       try {
         const options = {
           url: URLS,
@@ -35,8 +34,21 @@ export const RAPI = (uri, params) => {
 
         request(options, (err, response, body) => {
           try {
-            console.log('ok', response)
-            console.log('ok', body)
+            
+            if (err) {
+              retorno.Status = 404
+              retorno.Response = 'Servidor Offiline'
+              retorno.body = retorno.Response
+              return resolve(retorno)
+            }
+
+            if (!response) {              
+              retorno.Status = 404
+              retorno.Response = 'Servidor Offiline'
+              retorno.body = retorno.Response
+              return reject(retorno)
+            }
+
             if (response.statusCode !== 200) {
               retorno.Status = response.statusCode
               retorno.Response = response.statusMessage

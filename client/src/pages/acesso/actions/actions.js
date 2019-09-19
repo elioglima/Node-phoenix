@@ -1,7 +1,10 @@
 import { push } from "connected-react-router"
 import { Auth_app as Auth } from '../../src/auth_app'
 import * as RoutesAction from '../../../routes/routes_actions'
+import { RAPI } from '../../src/request-api'
 
+export const dispPainelControle = ()  => dispatch => { return dispatch(push('logado/painelcontrole')) }
+export const dispRAPI = (uri, params)  => dispatch =>  { return RAPI(uri,params) }
 export const dispDocs = (e) => dispatch => { return dispatch(RoutesAction.dispDocs(e)) }
 export const Auth_app = ()  => dispatch => { return dispatch(Auth()) }
 export const Logar = (parametros) => dispatch => {

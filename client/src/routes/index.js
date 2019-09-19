@@ -4,7 +4,7 @@ import { ConnectedRouter } from "connected-react-router"
 import ChatBot from '../pages/components/chatbot';
 
 import Acesso from "../pages/acesso"
-import Docs from "../pages/Docs"
+import painelcontrole from "../pages/logado/painelcontrole"
 
 // import Logado_Inicio from '../pages/logado/inicio/pages/index'
 // import NotFound from '../pages/generics/notfound/pages/index'
@@ -33,6 +33,7 @@ class Routes extends Component {
       <ConnectedRouter history={history}>        
         <Switch>
           <Route exact path="/" component={withProps(Acesso, {dados:this.props.dados})} />
+          <Route path="/logado/painelcontrole" component={withProps(painelcontrole, {dados:this.props.dados})} />
           {/* <Route path="/docs" component={withProps(Docs, {dados:this.props.dados})} /> */}
           {/* <Route path="/cadastrousuario" component={withProps(Logado_Cadastro_Usuario_Dados, {dados:this.props.dados})} /> */}
           {/* <Route path="/logado/ajuda" component={withProps(Logado_Ajuda, {dados:this.props.dados})} /> */}

@@ -26,9 +26,7 @@ class Objeto extends Component {
 
     render() {  
         return (
-            <div key={this.props.id} className="CompReactImageFieldControl" >
-                
-            </div>
+            <div key={this.props.id} className={"CompReactImageFieldControl " + this.state.className}  ></div>
         )
     }
 }
