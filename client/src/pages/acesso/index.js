@@ -95,7 +95,7 @@ class Objeto extends Component {
 
     return (
       <div>
-        <div className="container">
+        <div className="base-login">
           {
             (() => {
               if (this.state.pagina === 1) {
