@@ -24,12 +24,21 @@
 }
 
 .CompReactTextFieldControl .CompReactTextFieldControlLabel {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     padding: 10px 5px 0px 5px;
     font-size: 17px;
     letter-spacing: 1px;
     color: #575757;
-    font-weight: 'Light';
+    font-weight: "Light";
+}
+
+.CompReactTextFieldControl .CompReactTextFieldControlLabelErro {
+    font-family: "Poppins", sans-serif;
+    padding: 10px 5px 0px 5px;
+    font-size: 17px;
+    letter-spacing: 1px;
+    color: #575757;
+    font-weight: "Light";
 }
 
 .CompReactTextFieldControl .CompReactTextFieldControlInput {
@@ -37,18 +46,18 @@
 }
 
 .CompReactTextFieldControl .CompReactTextFieldControlInput input {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     padding: 8px 8px 8px 8px;
     font-size: 14px;
     width: 100%;
     border-radius: 5px;
-    border: 1px solid #81BEEB;
+    border: 1px solid #81beeb;
     color: rgb(158, 165, 172);
-    font-family: 'Poppins';
+    font-family: "Poppins";
     letter-spacing: 2px;
     font-size: 18px;
     text-indent: 0.01px;
-    font-weight: 'Light';
+    font-weight: "Light";
     outline: 0;
 }
 
@@ -57,7 +66,8 @@
     color: #6599ad;
 }
 
-.CompReactTextFieldControl .CompReactTextFieldControlInput input::-webkit-input-placeholder {
+.CompReactTextFieldControl
+    .CompReactTextFieldControlInput
+    input::-webkit-input-placeholder {
     color: #6599ad;
 }
-  

@@ -1,6 +1,6 @@
 module.exports = {
     Status: 200,
-    Erro:false,
-    Mensagem:'',
+    Erro: false,
+    Mensagem: "Sucesso",
     Response: {}
-}
+};

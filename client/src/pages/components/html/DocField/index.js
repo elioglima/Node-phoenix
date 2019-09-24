@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "../../../components/css/TextField/index.css";
+import "../css/TextField/index.css";
 
 class Objeto extends Component {
     constructor(props) {
@@ -20,6 +20,17 @@ class Objeto extends Component {
         };
     }
 
+    Valida = value => {
+        const CPF = require("cpf_cnpj").CPF;
+        const CNPJ = require("cpf_cnpj").CNPJ;
+
+        if (!value) return false;
+        const checkCpf = value.replace(/[^0-9]/g, "");
+        if (CPF.isValid(checkCpf)) return true;
+        else if (CNPJ.isValid(checkCpf)) return true;
+        return false;
+    };
+
     formatValue = value => {
         let valor = value;
         let error = false;
@@ -29,17 +40,19 @@ class Objeto extends Component {
             valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
             valor = valor.replace(/(\d{3})(\d)/, "$1.$2");
             valor = valor.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+            error = !this.Valida(valor);
         } else if (valor.length <= 18) {
             valor = valor.replace(/\D/g, "");
             valor = valor.replace(/^(\d{2})(\d)/, "$1.$2");
             valor = valor.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
             valor = valor.replace(/\.(\d{3})(\d)/, ".$1/$2");
             valor = valor.replace(/(\d{4})(\d)/, "$1-$2");
+            error = !this.Valida(valor);
         } else {
             error = true;
-            this.setState({ MsgErro: "Documento Inválido" });
         }
 
+        this.setState({ MsgErro: error === true ? "Documento Inválido" : " " });
         return {
             erro: error,
             valor: valor.toString()
@@ -49,7 +62,6 @@ class Objeto extends Component {
     onChange = e => {
         e.preventDefault();
         let retorno = this.formatValue(e.target.value);
-        if (retorno.erro == true) return;
         this.setState({ valor: retorno.valor });
         if (!this.props.onChange) return;
         this.props.onChange(retorno);
@@ -78,8 +90,9 @@ class Objeto extends Component {
                         placeholder={this.state.placeholder}
                     />
                     <span className="CompReactTextFieldControlLabelErro">
-                        {this.props.MsgErro}
+                        {this.state.MsgErro}&nbsp;
                     </span>
+                    &nbsp;
                 </div>
             </div>
         );

@@ -1,7 +1,10 @@
 const Request = require("./Request");
 const Response = require("./Response");
+const Usuario = require("../../../../db/models/Usuarios");
 
 module.exports = (req, res) => {
+    console.log("Route usuarios/pesquisar/doc");
+    // Usuario.CreateDemo();
     Request(req.body)
         .then(
             (dados = async dados => {
