@@ -6,27 +6,32 @@ import ModeloPagina from "../Controle";
 const ListaMenu = [
     {
         Titulo: "Painel de Controle",
-        Modelo: 0,
+        Modelo: "PG_PAINEL",
         Ativo: true
     },
     {
         Titulo: "Gerenciador de Tarefas",
-        Modelo: 1,
+        Modelo: "PG_MANAGER_TASK",
         Ativo: false
     },
     {
         Titulo: "Mensagens",
-        Modelo: 2,
+        Modelo: "PG_MESSAGE",
         Ativo: false
     },
     {
         Titulo: "Contatos",
-        Modelo: 3,
+        Modelo: "PG_CONTATO",
         Ativo: false
     },
     {
         Titulo: "Atendimento",
-        Modelo: 4,
+        Modelo: "PG_ATENDIMENTO",
+        Ativo: false
+    },
+    {
+        Titulo: "Módulos",
+        Modelo: "PG_MODULO",
         Ativo: false
     }
 ];
@@ -34,7 +39,17 @@ const ListaMenu = [
 class Objeto extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            PaginaSelecionada: "PG_PAINEL"
+        };
     }
+
+    onSelecionaPagina = pagina => {
+        console.log("ok", pagina);
+        this.setState({
+            PaginaSelecionada: pagina
+        });
+    };
 
     render() {
         return (
@@ -42,7 +57,7 @@ class Objeto extends Component {
                 {...this.props}
                 {...this.state}
                 Menus={ListaMenu}
-                PaginaSelecionada={0}
+                onSelecionaPagina={this.onSelecionaPagina.bind()}
             />
         );
     }

@@ -7,6 +7,7 @@ import BotaoSairSistema from "./components/BotaoSairSistema";
 import Header from "./components/Header";
 import LogoDev from "../../components/LogoDev";
 import { LogoEmpresa } from "./css/styled";
+import RenderBody from "./bodys";
 
 class Objeto extends Component {
     constructor(props) {
@@ -23,7 +24,6 @@ class Objeto extends Component {
     }
 
     componentDidMount = () => {
-        console.log(this.props);
         let KeyClient = localStorage.getItem("KeyClient");
         if (KeyClient.length > 0) {
             let TKC = require("../../src/token")(KeyClient);
@@ -37,7 +37,9 @@ class Objeto extends Component {
                 this.props.dispSair();
             }
 
-            this.setState({ Perfil: TKC.Resultado.Dados.Usr });
+            this.setState({
+                Perfil: TKC.Resultado.Dados.Usr
+            });
         } else {
             this.props.dispSair();
         }
@@ -53,6 +55,8 @@ class Objeto extends Component {
                             {this.props.Menus.map(menu => {
                                 return (
                                     <MenuItem
+                                        {...this.props}
+                                        {...this.state}
                                         titulo={menu.Titulo}
                                         modelo={menu.Modelo}
                                         ativo={menu.Ativo}
@@ -75,7 +79,8 @@ class Objeto extends Component {
                     </div>
 
                     <div className="base-container">
-                        <Header />
+                        <Header {...this.props} {...this.state} />
+                        <RenderBody {...this.props} {...this.state} />
                     </div>
                 </div>
             </div>

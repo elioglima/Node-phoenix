@@ -15,6 +15,11 @@ class Objeto extends Component {
         };
     }
 
+    onSelecionaPagina = () => {
+        if (!this.props.onSelecionaPagina) return;
+        this.props.onSelecionaPagina(this.state.modelo);
+    };
+
     icoPanelControl = () => {
         return (
             <SVG
@@ -128,16 +133,18 @@ class Objeto extends Component {
 
     Images = () => {
         switch (this.state.modelo) {
-            case 0:
+            case "PG_PAINEL":
                 return this.icoPanelControl();
-            case 1:
+            case "PG_MANAGER_TASK":
                 return this.icoManagerTask();
-            case 2:
+            case "PG_MESSAGE":
                 return this.icoMessage();
-            case 3:
+            case "PG_CONTATO":
                 return this.icoContato();
-            case 4:
+            case "PG_ATENDIMENTO":
                 return this.icoAtendimento();
+            case "PG_MODULO":
+                return this.icoModulo();
             default:
                 return <div />;
         }
@@ -145,7 +152,7 @@ class Objeto extends Component {
 
     render() {
         return (
-            <MENU>
+            <MENU onClick={() => this.onSelecionaPagina()}>
                 <ICO>{this.Images()}</ICO>
                 <TITULO ativo={this.state.ativo}>{this.state.titulo}</TITULO>
             </MENU>
