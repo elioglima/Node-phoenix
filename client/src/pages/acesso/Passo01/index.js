@@ -9,11 +9,10 @@ import "./css/styles.css";
 import libDoc from "../../../libs/fn_docs";
 
 const lista = [
-    { value: 0, label: "" },
-    { value: 1, label: "Centro Maxtriz" },
-    { value: 2, label: "Zona Leste" },
-    { value: 3, label: "Zona Norte" },
-    { value: 3, label: "Santos" }
+    { value: 1, label: "Centro Maxtriz", sel: false },
+    { value: 2, label: "Zona Leste", sel: false },
+    { value: 3, label: "Zona Norte", sel: false },
+    { value: 4, label: "Santos", sel: false }
 ];
 
 class Objeto extends Component {
@@ -22,9 +21,7 @@ class Objeto extends Component {
         this.state = {
             pagina: 1,
             SelectFieldMsgErro: "",
-            lista: lista,
-            cpf_cnpj: props.DocCadastroFieldValue,
-            SelectFieldValue: props.SelectFieldValue
+            cpf_cnpj: props.DocCadastroFieldValue
         };
     }
 
@@ -47,16 +44,27 @@ class Objeto extends Component {
         this.props.ProximaPagina(e, 2);
     };
 
+    onKeyUp = e => {
+        if (parseInt(e.keyCode) != 13) return;
+        this.ProximaPagina(e);
+    };
+
     render() {
         return (
             <div className="Passo01">
-                <div className="logo">&nbsp;</div>
+                <div className="logo">
+                    <img
+                        src={
+                            process.env.PUBLIC_URL + "/images/logo_program.svg"
+                        }
+                    />
+                </div>
                 <div className="inputs">
                     <SelectField
                         nome="tipo"
-                        valor={this.state.SelectFieldValue}
+                        valor={this.props.EmpresaIDFieldValue}
                         titulo="Tipo de Acesso"
-                        options={this.state.lista}
+                        options={lista}
                         onChange={this.OnChangeSelectField.bind()}
                         MsgErro={this.props.SelectFieldMsgErro}
                     />
@@ -66,6 +74,7 @@ class Objeto extends Component {
                         valor={this.state.cpf_cnpj}
                         titulo="Documento de Acesso"
                         onChange={this.OnChangeChangeDocs.bind()}
+                        onKeyUp={this.onKeyUp.bind()}
                     />
                     <ButtonField
                         nome="email"

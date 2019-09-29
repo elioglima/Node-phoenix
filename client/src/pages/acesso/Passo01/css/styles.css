@@ -1,4 +1,3 @@
-
 .Passo01 {
     float: left;
     width: 650px;
@@ -9,13 +8,13 @@
     float: left;
     width: 98%;
     text-align: right;
-    padding: 10px 0px 5px 5px;    
+    padding: 10px 0px 5px 5px;
 }
 
 .Passo01 .linha .esquecimeuemail {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 'Light';
-    color: #0683F5;
+    font-family: "Poppins", sans-serif;
+    font-weight: "Light";
+    color: #0683f5;
     font-size: 14px;
     letter-spacing: 1px;
 }
@@ -24,8 +23,7 @@
     float: left;
     width: 47%;
     height: 93%;
-    margin-right: 2%; 
-    background: url('../../css/logo.png') no-repeat;
+    margin-right: 2%;
     background-size: 80%;
     background-position: 65% 40%;
     border-right: 1px solid black;
@@ -46,18 +44,15 @@
     padding-left: 25%;
     padding-top: 30px;
     padding-bottom: 30px;
-
 }
-
 
 .Passo01 .inputs .botoes {
     float: left;
     width: 100%;
     text-align: right;
     padding: 5px 5px 5px 5px;
-    color: #0683F5;
+    color: #0683f5;
 }
-
 
 .Passo01 .inputs .botoes span {
     cursor: pointer;

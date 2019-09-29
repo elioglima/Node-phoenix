@@ -1,6 +1,6 @@
 module.exports = {
-    Status: 200,
-    Erro: false,
-    Mensagem: "Sucesso",
+    Status: 401,
+    Erro: true,
+    Mensagem: "Usuário não autorizado",
     Response: {}
 };

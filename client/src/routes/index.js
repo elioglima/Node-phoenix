@@ -4,11 +4,13 @@ import { ConnectedRouter } from "connected-react-router";
 import ChatBot from "../pages/components/chatbot";
 
 import Acesso from "../pages/acesso";
-import painelcontrole from "../pages/logado/painelcontrole";
+import painel from "../pages/logado/painel";
+import sair from "../pages/logado/sair";
 
+import Landing from "../pages/Landing";
 import Docs from "../pages/Docs/index";
+import NotFound from "../pages/generics/NotFound/pages";
 // import Logado_Inicio from '../pages/logado/inicio/pages/index'
-// import NotFound from '../pages/generics/notfound/pages/index'
 // import Logado_Cadastro_Usuario_Dados from '../pages/logado/cadastro/usuario/dados/pages/index'
 // import Logado_Ajuda from '../pages/logado/ajuda/pages/index'
 
@@ -36,20 +38,24 @@ class Routes extends Component {
                             })}
                         />
                         <Route
-                            path="/logado/painelcontrole"
-                            component={withProps(painelcontrole, {
+                            path="/painel"
+                            component={withProps(painel, {
                                 dados: this.props.dados
                             })}
                         />
                         <Route
-                            path="/docs"
-                            component={withProps(Docs, {
+                            path="/sair"
+                            component={withProps(sair, {
                                 dados: this.props.dados
                             })}
                         />
-                        {/* <Route path="/cadastrousuario" component={withProps(Logado_Cadastro_Usuario_Dados, {dados:this.props.dados})} /> */}
-                        {/* <Route path="/logado/ajuda" component={withProps(Logado_Ajuda, {dados:this.props.dados})} /> */}
-                        {/* <Route path="*" component={withProps(NotFound, {dados:this.props.dados})} /> */}
+
+                        <Route
+                            path="*"
+                            component={withProps(NotFound, {
+                                dados: this.props.dados
+                            })}
+                        />
                     </Switch>
                 </ConnectedRouter>
             </div>

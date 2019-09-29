@@ -1,7 +1,6 @@
-
 .CompReactSelectFieldControl {
     float: left;
-    width: 100%;    
+    width: 100%;
 }
 
 .CompReactSelectFieldControl .CompReactSelectFieldControlInput {
@@ -9,35 +8,35 @@
 }
 
 .CompReactSelectFieldControl .CompReactSelectFieldControlInput select {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     padding: 5px 5px 5px 5px;
     font-size: 14px;
     width: 100%;
     border-radius: 5px;
-    border-color: #81BEEB;
-    color: #7E858C;
+    border-color: #81beeb;
+    color: #7e858c;
     letter-spacing: 2px;
     font-size: 18px;
-    text-indent: 0.01px; 
-    font-weight: 'Light'; 
+    font-weight: "Light";
     outline: 0;
 }
 
-
-.CompReactSelectFieldControl .CompReactSelectFieldControlLabel {    
-    font-family: 'Poppins', sans-serif;
+.CompReactSelectFieldControl .CompReactSelectFieldControlLabel {
+    font-family: "Poppins", sans-serif;
     padding: 10px 5px 0px 5px;
     font-size: 17px;
     letter-spacing: 1px;
     color: #575757;
-    font-weight: 'Light'; 
+    font-weight: "Light";
 }
 
-.CompReactSelectFieldControl .CompReactSelectFieldControlInput select:focus {
+.CompReactSelectFieldControl .CompReactSelectFieldControlInput select focus {
     background-color: #f3f8f0;
     color: #6599ad;
 }
 
-.CompReactSelectFieldControl .CompReactSelectFieldControlInput select::-webkit-input-placeholder {
+.CompReactSelectFieldControl
+    .CompReactSelectFieldControlInput
+    select::-webkit-input-placeholder {
     color: #6599ad;
 }

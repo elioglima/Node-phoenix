@@ -11,17 +11,16 @@ export const RAPI = (uri, params) => {
             Response: {}
         };
 
-        const retornoMetodo = (Body, Mensagem, Status = 200) => {
+        const retornoMetodo = (Body, Mensagem, Status = 200, Erro = false) => {
             retorno.Status = Status;
             retorno.Mensagem = Mensagem;
             retorno.Response = Body;
+            retorno.Erro = Erro;
 
             if (Status != 200) {
                 retorno.Erro = true;
-                return reject({ retornoMetoto: retorno });
             }
 
-            retorno.Erro = false;
             return resolve({ retornoMetoto: retorno });
         };
 
@@ -61,15 +60,11 @@ export const RAPI = (uri, params) => {
                     return retornoMetodo(
                         body.Response,
                         response.Mensagem,
-                        response.statusCode
+                        response.statusCode,
+                        response.Erro
                     );
                 }
-
-                return retornoMetodo(
-                    body.Response,
-                    response.statusMessage,
-                    200
-                );
+                return retornoMetodo(body.Response, body.Mensagem, body.Status);
             });
         } catch (error) {
             return retornoMetodo(error, "Erro interno", 500);

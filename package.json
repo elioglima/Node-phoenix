@@ -31,6 +31,7 @@
     "helmet": "^3.21.0",
     "http-errors": "~1.6.2",
     "logplease": "^1.2.15",
+    "moment": "^2.24.0",
     "mongoose": "^5.6.13",
     "morgan": "~1.9.0",
     "mysql": "^2.17.1",

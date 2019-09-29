@@ -56,8 +56,8 @@ class Objeto extends Component {
     };
 
     onKeyUp = e => {
-        // e.preventDefault()
-        // this.setState({valor:e.target.value})
+        if (!this.props.onKeyUp) return;
+        this.props.onKeyUp(e);
     };
 
     render() {

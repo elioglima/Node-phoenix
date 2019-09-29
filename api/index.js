@@ -1,9 +1,10 @@
-
 // rotas
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const usuarios = require('./routes/usuarios')
-router.use('/usuarios', usuarios);
+const acesso = require("./routes/acesso");
+const usuarios = require("./routes/usuarios");
+router.use("/acesso", acesso);
+router.use("/usuarios", usuarios);
 
 module.exports = router;

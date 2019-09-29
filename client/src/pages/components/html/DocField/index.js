@@ -20,6 +20,8 @@ class Objeto extends Component {
         };
     }
 
+    componentDidMount = () => {};
+
     Valida = value => {
         const CPF = require("cpf_cnpj").CPF;
         const CNPJ = require("cpf_cnpj").CNPJ;
@@ -68,8 +70,8 @@ class Objeto extends Component {
     };
 
     onKeyUp = e => {
-        // e.preventDefault()
-        // this.setState({valor:e.target.value})
+        if (!this.props.onKeyUp) return;
+        this.props.onKeyUp(e);
     };
 
     render() {
@@ -88,6 +90,7 @@ class Objeto extends Component {
                         onChange={e => this.onChange(e)}
                         onKeyUp={e => this.onKeyUp(e)}
                         placeholder={this.state.placeholder}
+                        onKeyUp={e => this.onKeyUp(e)}
                     />
                     <span className="CompReactTextFieldControlLabelErro">
                         {this.state.MsgErro}&nbsp;

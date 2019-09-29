@@ -2,10 +2,12 @@ const DBUsuario = require("../../../../db/models/Usuarios");
 const libObj = require("../../../../libs/fn_obj");
 
 module.exports = async Dados => {
-    let ModeloRetornoClient = require("../../ModeloRetornoClient");
+    let ModeloRetornoClient = libObj.Assign(
+        require("../../ModeloRetornoClient")
+    );
 
     try {
-        let ModelCadastro = require("../ModelCadastro");
+        let ModelCadastro = libObj.Assign(require("../ModelCadastro"));
         let Registros;
 
         if (
@@ -31,6 +33,7 @@ module.exports = async Dados => {
 
         ModeloRetornoClient.Status = 200;
         ModeloRetornoClient.Erro = false;
+        ModeloRetornoClient.Mensagem = "Sucesso";
         ModeloRetornoClient.Response = {
             TotalRegistros: Registros.length,
             Registros: Registros

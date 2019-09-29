@@ -12,7 +12,7 @@ module.exports = req => {
 
         let r = libObj.Parse(req, ModelCadatro);
         if (r.EmpresaID <= 0) {
-            RetornoClient.Erro = false;
+            RetornoClient.Erro = true;
             RetornoClient.Mensagem = "Informe :: (EmpresaID)";
             return reject(RetornoClient);
         } else if (!r.Numero) {

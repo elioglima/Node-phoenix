@@ -1,4 +1,5 @@
 const libObj = require("../../libs/fn_obj");
+const libDate = require("../../libs/fn_date");
 const libDoc = require("../../libs/fn_docs");
 const config = require("../../config");
 const mongoose = require("mongoose");
@@ -13,7 +14,9 @@ let UsuarioSchema = new Schema(
         TipoPessoaID: { type: Number },
         Doc1: { type: String },
         Doc2: { type: String },
-        CategoriaID: { type: Number }
+        PSWD: { type: String },
+        CategoriaID: { type: Number },
+        KeyUser: { type: String }
     },
     { collection: "Usuario" }
 );
@@ -51,20 +54,6 @@ const FindId = Dados =>
         query instanceof mongoose.Query;
         const obj = await query;
         return resolve({ retorno: obj });
-    });
-
-module.exports.Novo = dados =>
-    new Promise(async resolve => {
-        delete dados._id;
-        const model = new Usuario(dados);
-        return await model
-            .save()
-            .then(resultado =>
-                resolve({ RetornoMetodo: { Erro: false, Response: resultado } })
-            )
-            .catch(err =>
-                resolve({ RetornoMetodo: { Erro: true, Response: err } })
-            );
     });
 
 module.exports.Editar = dados =>
@@ -142,7 +131,7 @@ module.exports.ApagarID = _id =>
 module.exports.FindCPF = Dados =>
     Find({
         EmpresaID: Dados.EmpresaID,
-        Doc1: Dados.Numero
+        Doc1: Dados.Doc1
     });
 
 module.exports.LikeCPF = Dados =>
@@ -195,10 +184,38 @@ const LikeMail = dados =>
         return resolve({ retorno: docs });
     });
 
+Novo = dados =>
+    new Promise(async resolve => {
+        delete dados._id;
+        const model = new Usuario(dados);
+        return await model
+            .save()
+            .then(resultado =>
+                resolve({ RetornoMetodo: { Erro: false, Response: resultado } })
+            )
+            .catch(err =>
+                resolve({ RetornoMetodo: { Erro: true, Response: err } })
+            );
+    });
+
+CreateKeyUser = u => {
+    let obj = {
+        _id: u._id.toString(),
+        EmpresaID: u.EmpresaID,
+        Data: u.Data,
+        PSWD: u.PSWD
+    };
+
+    let r = require("../../libs/fn_cryp").Encode(obj);
+    u.KeyUser = r.Resultado;
+};
+
 const CreateDemo = async () => {
     let usr = {
+        _id: mongoose.Types.ObjectId("5d8a637700f1a940aed98fb3"),
         EmpresaID: 1,
         Data: new Date(),
+        PSWD: require("../../libs/fn_hash").sha256("123"),
         Email: "diretor.sis@gmail.com",
         Nome: "Elio de Lima",
         TipoPessoaID: 0,
@@ -207,15 +224,31 @@ const CreateDemo = async () => {
         CategoriaID: 0
     };
 
+    CreateKeyUser(usr);
+
     await Novo(usr)
         .then(res => console.log("resultado create demo", res))
         .catch(res => console.log("erro create demo", res));
 };
 
+FindLogar = dados =>
+    new Promise(async resolve => {
+        const query = Usuario.find({
+            EmpresaID: dados.EmpresaID,
+            Doc1: dados.Doc1,
+            PSWD: dados.PSWD
+        });
+        query instanceof mongoose.Query;
+        const docs = await query;
+        return resolve({ retorno: docs });
+    });
+
 module.exports.FindId = FindId;
 module.exports.Todos = Dados => Todos(Dados);
+module.exports.FindLogar = Dados => FindLogar(Dados);
 module.exports.FindNome = Dados => FindNome(Dados);
 module.exports.LikeNome = Dados => LikeNome(Dados);
 module.exports.FindMail = Dados => FindMail(Dados);
 module.exports.LikeMail = Dados => LikeMail(Dados);
+module.exports.Novo = () => Novo();
 module.exports.CreateDemo = () => CreateDemo();

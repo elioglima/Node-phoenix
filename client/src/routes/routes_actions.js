@@ -1,59 +1,67 @@
 import { push } from "connected-react-router";
-import base64 from 'base-64';
+import base64 from "base-64";
 
-  export const dispHome = (e) => dispatch => {
+export const dispPainelControle = e => dispatch => {
+    console.log(e);
+    if (e && e !== null) {
+        e.preventDefault();
+    }
+    dispatch(push("/painel"));
+};
+
+export const dispHome = e => dispatch => {
     if (e !== null) {
-      e.preventDefault()
+        e.preventDefault();
     }
     dispatch(push("/"));
-  }
+};
 
-  export const dispInicio = (e) => dispatch => {
+export const dispInicio = e => dispatch => {
     if (e !== null) {
-      e.preventDefault()
+        e.preventDefault();
     }
     dispatch(push("/logado"));
-  }
+};
 
-  export const dispAjuda  = (e) => dispatch => {
-    e.preventDefault()
+export const dispAjuda = e => dispatch => {
+    e.preventDefault();
     dispatch(push("/logado/ajuda"));
-  }    
+};
 
-  export const dispDocs  = (e) => dispatch => {
+export const dispDocs = e => dispatch => {
     if (e !== null) {
-      e.preventDefault()
+        e.preventDefault();
     }
 
     dispatch(push("/Docs"));
-  } 
+};
 
-  export const disPesquisaGeral = (e, inp_pesquisa) => dispatch => {    
-    e.preventDefault()
-    localStorage.setItem('inp_pesquisa', base64.encode(inp_pesquisa));  
-    dispatch(push('/pesquisageral'))
-  }
+export const disPesquisaGeral = (e, inp_pesquisa) => dispatch => {
+    e.preventDefault();
+    localStorage.setItem("inp_pesquisa", base64.encode(inp_pesquisa));
+    dispatch(push("/pesquisageral"));
+};
 
-  export const dispSair = (e) => dispatch => {
-    e.preventDefault()
-    localStorage.setItem('logado', '') 
-    localStorage.setItem('A1', '')  
-    localStorage.setItem('cad', '')  
+export const dispSair = e => dispatch => {
+    e.preventDefault();
+    localStorage.setItem("logado", "");
+    localStorage.setItem("A1", "");
+    localStorage.setItem("cad", "");
     dispatch(push("/"));
-  }  
+};
 
-  // CADASTROS
-  export const dispCadUsuario = (e) => dispatch => {
-    e.preventDefault()
+// CADASTROS
+export const dispCadUsuario = e => dispatch => {
+    e.preventDefault();
     dispatch(push("/cadastrousuario"));
-  } 
+};
 
-  export const dispCadGrupoAcessoUsuarios = (e) => dispatch => {
-    e.preventDefault()
+export const dispCadGrupoAcessoUsuarios = e => dispatch => {
+    e.preventDefault();
     dispatch(push("/grupoacessousuario"));
-  } 
-  
-  export const dispPesqCadGrupoAcessoUsuarios = (e) => dispatch => {
-    e.preventDefault()
+};
+
+export const dispPesqCadGrupoAcessoUsuarios = e => dispatch => {
+    e.preventDefault();
     dispatch(push("/grupoacessousuario"));
-  } 
+};
