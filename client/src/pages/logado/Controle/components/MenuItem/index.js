@@ -154,7 +154,7 @@ class Objeto extends Component {
             case "PG_MODULO":
                 return this.icoModulo();
             default:
-                return <div />;
+                return this.icoPanelControl();
         }
     };
 

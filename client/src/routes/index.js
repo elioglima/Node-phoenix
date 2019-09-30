@@ -6,6 +6,7 @@ import ChatBot from "../pages/components/chatbot";
 import Acesso from "../pages/acesso";
 import PG_PAINEL from "../pages/logado/PG_PAINEL";
 import PG_MODULO from "../pages/logado/PG_MODULO";
+import PG_USUARIO from "../pages/logado/PG_USUARIO";
 import sair from "../pages/logado/sair";
 import NotFound from "../pages/generics/NotFound/pages";
 import history from "./history";
@@ -40,6 +41,12 @@ class Routes extends Component {
                         <Route
                             path="/modulos"
                             component={withProps(PG_MODULO, {
+                                dados: this.props.dados
+                            })}
+                        />
+                        <Route
+                            path="/usuarios"
+                            component={withProps(PG_USUARIO, {
                                 dados: this.props.dados
                             })}
                         />

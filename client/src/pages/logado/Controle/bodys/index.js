@@ -5,6 +5,7 @@ import CONTATO from "./CONTATO";
 import MANAGER_TASK from "./MANAGER_TASK";
 import MESSAGE from "./MESSAGE";
 import MODULO from "./MODULO";
+import USUARIO from "./USUARIO";
 
 export default class index extends Component {
     constructor(props) {
@@ -25,6 +26,8 @@ export default class index extends Component {
                 return <ATENDIMENTO {...this.props} {...this.state} />;
             case "PG_MODULO":
                 return <MODULO {...this.props} {...this.state} />;
+            case "PG_USUARIO":
+                return <USUARIO {...this.props} {...this.state} />;
 
             default:
                 return <div />;

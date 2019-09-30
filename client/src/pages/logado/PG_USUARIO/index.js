@@ -5,13 +5,18 @@ import ModeloPagina from "../Controle";
 
 const ListaMenu = [
     {
-        Titulo: "Módulos",
-        Modelo: "PG_MODULO",
+        Titulo: "Usuários",
+        Modelo: "PG_USUARIO",
         Ativo: true
     },
     {
         Titulo: "Painel de Controle",
         Modelo: "PG_PAINEL",
+        Ativo: false
+    },
+    {
+        Titulo: "Relatórios",
+        Modelo: "PG_SUB_RELATORIOS_USUARIO",
         Ativo: false
     }
 ];
@@ -20,7 +25,7 @@ class Objeto extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            PaginaSelecionada: "PG_MODULO"
+            PaginaSelecionada: "PG_USUARIO"
         };
     }
 

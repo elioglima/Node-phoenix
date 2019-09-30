@@ -5,6 +5,11 @@ import ModeloPagina from "../Controle";
 
 const ListaMenu = [
     {
+        Titulo: "Painel de Controle",
+        Modelo: "PG_PAINEL",
+        Ativo: true
+    },
+    {
         Titulo: "Gerenciador de Tarefas",
         Modelo: "PG_MANAGER_TASK",
         Ativo: false

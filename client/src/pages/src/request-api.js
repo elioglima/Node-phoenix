@@ -42,7 +42,7 @@ export const RAPI = (uri, params) => {
             request(options, (err, response, body) => {
                 if (err || response.statusCode == 404) {
                     return retornoMetodo(
-                        body.Response,
+                        "Servidor Offiline",
                         "Servidor Offiline",
                         404
                     );

@@ -41,10 +41,10 @@ export const MENU = styled.div`
     &:hover svg {
         width: 22px;
         height: 26px;
-        stroke: #7c71ff;
+        /* stroke: #7c71ff; */
     }
 
     &:hover label {
-        color: #7c71ff;
+        /* color: #7c71ff; */
     }
 `;

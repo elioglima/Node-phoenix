@@ -6,12 +6,28 @@ import MenuItem from "./components/MenuItem";
 import BotaoSairSistema from "./components/BotaoSairSistema";
 import Header from "./components/Header";
 import LogoDev from "../../components/LogoDev";
-import { LogoEmpresa } from "./css/styled";
+import {
+    LogoEmpresa,
+    RELOGIO,
+    RELOGIO_ICONE,
+    RELOGIO_TITULO
+} from "./css/styled";
 import RenderBody from "./bodys";
 
 class Objeto extends Component {
     constructor(props) {
         super(props);
+        let d = new Date();
+        let day = parseInt(d.getDay());
+        let month = parseInt(d.getMonth());
+        let date = parseInt(d.getDate());
+        let year = parseInt(d.getFullYear());
+        let time = d.toLocaleTimeString();
+
+        if (day <= 9) day = "0" + day;
+        if (month <= 9) month = "0" + month;
+        if (date <= 9) date = "0" + date;
+
         this.state = {
             pagina: 1,
             SelectFieldValue: 0,
@@ -19,8 +35,17 @@ class Objeto extends Component {
             EmailCadastroFieldValue: 0,
             EmailCadastroMsgErro: "",
             BotaoContinuarMsgErro: "",
-            Perfil: {}
+            Perfil: {},
+
+            day,
+            month,
+            date,
+            year,
+            time,
+            data_exibicao: day + "/" + month + "/" + year + " " + time
         };
+
+        this.countingSecond = this.countingSecond.bind(this);
     }
 
     componentDidMount = () => {
@@ -41,17 +66,58 @@ class Objeto extends Component {
                 Perfil: TKC.Resultado.Dados.Usr
             });
         } else {
-            this.props.dispSair();
+            return this.props.dispSair();
         }
+
+        this.timeout = setInterval(this.countingSecond, 1000);
     };
+
+    countingSecond() {
+        let d = new Date();
+        let day = parseInt(d.getDay());
+        let month = parseInt(d.getMonth());
+        let date = parseInt(d.getDate());
+        let year = parseInt(d.getFullYear());
+        let time = d.toLocaleTimeString();
+
+        if (day <= 9) day = "0" + day;
+        if (month <= 9) month = "0" + month;
+        if (date <= 9) date = "0" + date;
+        this.setState({
+            day,
+            month,
+            date,
+            year,
+            time,
+            data_exibicao:
+                this.state.day +
+                "/" +
+                this.state.month +
+                "/" +
+                this.state.year +
+                " " +
+                this.state.time
+        });
+    }
 
     render() {
         return (
             <div>
                 <div className="container">
                     <div className="sidebar">
-                        <div className="divisor1"></div>
                         <div className="ItensMenu">
+                            <RELOGIO>
+                                <RELOGIO_ICONE
+                                    src={
+                                        process.env.PUBLIC_URL +
+                                        "images/icones/ico_relogio.svg"
+                                    }
+                                />{" "}
+                                <RELOGIO_TITULO>
+                                    {this.state.data_exibicao}
+                                </RELOGIO_TITULO>
+                            </RELOGIO>
+
                             {this.props.Menus.map(menu => {
                                 return (
                                     <MenuItem
@@ -71,6 +137,7 @@ class Objeto extends Component {
                                 "images/logo_empresa.svg"
                             }
                         />
+
                         <BotaoSairSistema
                             titulo={"Sair do Sistema"}
                             onClick={this.props.dispSair}
@@ -80,7 +147,11 @@ class Objeto extends Component {
 
                     <div className="base-container">
                         <Header {...this.props} {...this.state} />
-                        <RenderBody {...this.props} {...this.state} />
+                        <RenderBody
+                            {...this.props}
+                            {...this.state}
+                            onSelecionaPagina={this.onSelecionaPagina}
+                        />
                     </div>
                 </div>
             </div>
