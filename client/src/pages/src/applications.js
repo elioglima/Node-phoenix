@@ -1,9 +1,5 @@
-import { push } from "connected-react-router"
+import { push } from "connected-react-router";
 
-export const SairSistema = () => dispatch => {
-    localStorage.setItem('A1','')
-    localStorage.setItem('cad','')
-    dispatch(push('/'))
-
-    
-}
+export const dispPainelControle = () => dispatch => dispatch(push("/painel"));
+export const dispModulos = () => dispatch => dispatch(push("/modulos"));
+export const dispSair = () => dispatch => dispatch(push("/sair"));

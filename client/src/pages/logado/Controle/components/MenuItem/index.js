@@ -16,6 +16,14 @@ class Objeto extends Component {
     }
 
     onSelecionaPagina = () => {
+        if (this.state.modelo == "PG_PAINEL") {
+            return this.props.dispPainelControle();
+        }
+
+        if (this.state.modelo == "PG_MODULO") {
+            return this.props.dispModulos();
+        }
+
         if (!this.props.onSelecionaPagina) return;
         this.props.onSelecionaPagina(this.state.modelo);
     };

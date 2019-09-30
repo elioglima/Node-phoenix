@@ -1,5 +1,10 @@
 import React, { Component } from "react";
-import { PAINEL, MANAGER_TASK, MESSAGE, CONTATO, ATENDIMENTO } from "./painel";
+import PAINEL from "./PAINEL";
+import ATENDIMENTO from "./ATENDIMENTO";
+import CONTATO from "./CONTATO";
+import MANAGER_TASK from "./MANAGER_TASK";
+import MESSAGE from "./MESSAGE";
+import MODULO from "./MODULO";
 
 export default class index extends Component {
     constructor(props) {
@@ -9,15 +14,17 @@ export default class index extends Component {
     render() {
         switch (this.props.PaginaSelecionada) {
             case "PG_PAINEL":
-                return <PAINEL />;
+                return <PAINEL {...this.props} {...this.state} />;
             case "PG_MANAGER_TASK":
-                return <MANAGER_TASK />;
+                return <MANAGER_TASK {...this.props} {...this.state} />;
             case "PG_MESSAGE":
-                return <MESSAGE />;
+                return <MESSAGE {...this.props} {...this.state} />;
             case "PG_CONTATO":
-                return <CONTATO />;
+                return <CONTATO {...this.props} {...this.state} />;
             case "PG_ATENDIMENTO":
-                return <ATENDIMENTO />;
+                return <ATENDIMENTO {...this.props} {...this.state} />;
+            case "PG_MODULO":
+                return <MODULO {...this.props} {...this.state} />;
 
             default:
                 return <div />;

@@ -4,16 +4,10 @@ import { ConnectedRouter } from "connected-react-router";
 import ChatBot from "../pages/components/chatbot";
 
 import Acesso from "../pages/acesso";
-import painel from "../pages/logado/painel";
+import PG_PAINEL from "../pages/logado/PG_PAINEL";
+import PG_MODULO from "../pages/logado/PG_MODULO";
 import sair from "../pages/logado/sair";
-
-import Landing from "../pages/Landing";
-import Docs from "../pages/Docs/index";
 import NotFound from "../pages/generics/NotFound/pages";
-// import Logado_Inicio from '../pages/logado/inicio/pages/index'
-// import Logado_Cadastro_Usuario_Dados from '../pages/logado/cadastro/usuario/dados/pages/index'
-// import Logado_Ajuda from '../pages/logado/ajuda/pages/index'
-
 import history from "./history";
 
 function withProps(Component, props) {
@@ -39,10 +33,17 @@ class Routes extends Component {
                         />
                         <Route
                             path="/painel"
-                            component={withProps(painel, {
+                            component={withProps(PG_PAINEL, {
                                 dados: this.props.dados
                             })}
                         />
+                        <Route
+                            path="/modulos"
+                            component={withProps(PG_MODULO, {
+                                dados: this.props.dados
+                            })}
+                        />
+
                         <Route
                             path="/sair"
                             component={withProps(sair, {
