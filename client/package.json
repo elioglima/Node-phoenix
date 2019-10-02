@@ -5,7 +5,7 @@
   "proxy": "http://api.teste.com.br/v1",
   "dependencies": {
     "autoscroll-react": "^3.2.0",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "base-64": "^0.1.0",
     "browserify-fs": "^1.0.0",
     "connected-react-router": "^4.4.1",
