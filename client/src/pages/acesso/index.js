@@ -24,10 +24,10 @@ class Objeto extends Component {
             BotaoContinuarMsgErro: "",
             DocCadastroFieldInvalido: true,
             KeyClient: ""
-        };
-
+        };        
+        
         let KeyClient = localStorage.getItem("KeyClient");
-        if (KeyClient != "undefined")
+        if (KeyClient != "undefined" && KeyClient)
             if (KeyClient.length > 0) {
                 let TKC = require("../src/token")(KeyClient);
                 if (TKC.Erro) {

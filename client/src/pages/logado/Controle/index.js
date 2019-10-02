@@ -15,6 +15,7 @@ import {
 import RenderBody from "./bodys";
 
 class Objeto extends Component {
+
     constructor(props) {
         super(props);
         let d = new Date();
@@ -44,7 +45,9 @@ class Objeto extends Component {
             time,
             data_exibicao: day + "/" + month + "/" + year + " " + time,
 
-            StateKeyPesquisa: false
+            HeaderPesquisaInputValue:'',
+            StateKeyPesquisa: false,
+            StateKeyPesquisaDblClick: false
         };
 
         this.countingSecond = this.countingSecond.bind(this);
@@ -110,7 +113,30 @@ class Objeto extends Component {
         this.setState({
             StateKeyPesquisa: value
         });
+        this.setStatePesquisa(true)
     };
+
+    onChangeHeaderPesquisaInput = (value) => {
+        this.setState({
+            HeaderPesquisaInputValue: value
+        });
+    }
+
+    onDoubleDblClickSetStatePesquisa = value => {
+        /* 
+            muda stato da variavel indicadora de status de click
+            do btPesquisa para decisoes e ações
+        */
+        
+       this.setStatePesquisa(value)
+    }
+    
+    setStatePesquisa = (value) => {
+        console.log('click', value)
+        this.setState({
+            StateKeyPesquisaDblClick: value
+        });
+    }
 
     render() {
         return (
@@ -130,9 +156,10 @@ class Objeto extends Component {
                                 </RELOGIO_TITULO>
                             </RELOGIO>
 
-                            {this.props.Menus.map(menu => {
+                            {this.props.Menus.map((menu, key) => {
                                 return (
                                     <MenuItem
+                                        key={'MenuItem' + key}
                                         {...this.props}
                                         {...this.state}
                                         titulo={menu.Titulo}
@@ -161,13 +188,18 @@ class Objeto extends Component {
                         <Header
                             {...this.props}
                             {...this.state}
+                            onChangeHeaderPesquisaInput={this.onChangeHeaderPesquisaInput.bind()}
                             onPesquisarKey={this.onPesquisarKey.bind()}
+                            onDoubleDblClickSetStatePesquisa={this.onDoubleDblClickSetStatePesquisa.bind()}
                         />
                         <RenderBody
                             {...this.props}
                             {...this.state}
                             onSelecionaPagina={this.onSelecionaPagina}
                             onPesquisarKey={this.onPesquisarKey.bind()}
+                            onDoubleDblClickSetStatePesquisa={this.onDoubleDblClickSetStatePesquisa.bind()}
+                            setStatePesquisa={this.setStatePesquisa.bind()}
+                            onChangeHeaderPesquisaInput={this.onChangeHeaderPesquisaInput.bind()}
                         />
                     </div>
                 </div>

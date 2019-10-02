@@ -25,7 +25,7 @@ module.exports = req => {
 
             ModelCadatro.KeyClient = "";
 
-            let r = libObj.Parse(req, ModelCadatro);
+            let r = libObj.Parse(req, ModelCadatro, true);
             r.Token = require("../../sessao/validacao").Execute(r.KeyClient);
             if (r.Token.Erro == true) return RetornoFunc(r.Token.Mensagem);
 

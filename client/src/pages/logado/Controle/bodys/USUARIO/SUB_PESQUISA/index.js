@@ -14,22 +14,6 @@ import {
     GRUPO_MENU_TITULO_LABEL,
     GRUPO_MENU_TITULO_BOTOES
 } from "./css/styled";
-import { get } from "https";
-
-const Menus = [
-    {
-        Titulo: "Lista de Usuários",
-        Itens: [
-            {
-                Id: "5d8ca4815d54e75bb14a18ac",
-                Nome: "Elio Lima",
-                Atualizado: "20, Agosto de 2019",
-                Documento: "216.399.218-77",
-                Email: "diretor.sis@gmail.com"
-            }
-        ]
-    }
-];
 
 export default class Objeto extends Component {
     constructor(props) {
@@ -51,13 +35,13 @@ export default class Objeto extends Component {
         this.LoadPesquisa();
     }
 
-    getMenu = usuario => {
+    getMenu = (key, usuario) => {
         return (
-            <MENU_ACESSO onClick={e => this.props.onClickEditar(usuario._id)}>
-                <MENU_BASE>
-                    <MENU_TITULO>{usuario.Nome}</MENU_TITULO>
-                    <MENU_DESC>{usuario.Doc1}</MENU_DESC>
-                    <MENU_DESC>{usuario.Email}</MENU_DESC>
+            <MENU_ACESSO key={key + "MA"} onClick={e => this.props.onClickEditar(usuario._id)}>
+                <MENU_BASE key={key + "MB"}>
+                    <MENU_TITULO key={key + "MT"}>{usuario.Nome}</MENU_TITULO>
+                    <MENU_DESC key={key + "MD1"}>{usuario.Doc1}</MENU_DESC>
+                    <MENU_DESC key={key + "MD2"}>{usuario.Email}</MENU_DESC>
                 </MENU_BASE>
             </MENU_ACESSO>
         );
@@ -66,7 +50,7 @@ export default class Objeto extends Component {
     LoadPesquisa = async () => {
         let { retornoMetoto } = await this.props.dispRAPI(
             "/usuarios/pesquisar/filtro",
-            {}
+            { TextoPesquisa: this.props.HeaderPesquisaInputValue }
         );
         if (retornoMetoto.Erro == false) {
             this.setState({
@@ -77,26 +61,32 @@ export default class Objeto extends Component {
     };
 
     render() {
-        return Menus.map(Grupo => {
-            return (
-                <GRUPO_MENU>
-                    <GRUPO_MENU_TITULO>
-                        <GRUPO_MENU_TITULO_LABEL>
-                            {Grupo.Titulo}
-                        </GRUPO_MENU_TITULO_LABEL>
-                        <GRUPO_MENU_TITULO_BOTOES>
-                            <span onClick={e => this.props.onClickNovo()}>
-                                Novo
+        return (
+            <GRUPO_MENU>
+                <GRUPO_MENU_TITULO>
+                    <GRUPO_MENU_TITULO_LABEL>
+                        Lista de Usuários
+                    </GRUPO_MENU_TITULO_LABEL>
+                    <GRUPO_MENU_TITULO_BOTOES>
+                        <span onClick={e => this.props.onClickNovo()}>
+                            Novo
                             </span>
-                        </GRUPO_MENU_TITULO_BOTOES>
-                    </GRUPO_MENU_TITULO>
-                    <GRUPO_MENU_ICONES>
-                        {this.state.Registros.map(Usuario => {
-                            return this.getMenu(Usuario);
-                        })}
-                    </GRUPO_MENU_ICONES>
-                </GRUPO_MENU>
-            );
-        });
+                    </GRUPO_MENU_TITULO_BOTOES>
+                </GRUPO_MENU_TITULO>
+                <GRUPO_MENU_ICONES>
+                    {
+                        (() => {
+                            if (this.state.Registros.length == 0) 
+                                return 'Nenhum registro localizado.'
+                            
+                            return this.state.Registros.map((Usuario, key) => {
+                                return this.getMenu(key, Usuario);
+                            })
+                        })()
+
+                    }
+                </GRUPO_MENU_ICONES>
+            </GRUPO_MENU>
+        )
     }
 }

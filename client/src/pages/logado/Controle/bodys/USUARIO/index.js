@@ -13,7 +13,7 @@ export default class Objeto extends Component {
     }
 
     onClickEditar = id_selecionado => {
-        console.log("editando", id_selecionado);
+        this.props.onChangeHeaderPesquisaInput('')
         this.setState({
             sub_pagina: "SUB_CADASTRO",
             status_pagina: "EDITAR",
@@ -45,6 +45,15 @@ export default class Objeto extends Component {
         });
     };
 
+    componentDidUpdate() {
+        if (this.props.StateKeyPesquisaDblClick == true && this.state.sub_pagina == 'SUB_CADASTRO') {
+            this.props.setStatePesquisa(false)
+            this.onClickSubPagina('SUB_PESQUISA', 'PESQUISA', '-1')             
+        } else if (this.props.StateKeyPesquisaDblClick == true && this.state.sub_pagina == 'SUB_PESQUISA') {
+            this.props.setStatePesquisa(false)
+        }
+    }
+
     render() {
         switch (this.state.sub_pagina) {
             case "SUB_PESQUISA":
@@ -64,7 +73,7 @@ export default class Objeto extends Component {
                         {...this.state}
                         {...this.props}
                         onClickGravar={this.onClickGravar.bind()}
-                        onClickSubPagina={this.onClickSubPagina.bind()}
+                        onClickSubPagina={this.onClickSubPagina.bind()}                        
                     />
                 );
             default:

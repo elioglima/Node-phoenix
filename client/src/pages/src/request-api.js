@@ -25,11 +25,11 @@ export const RAPI = (uri, params) => {
         };
 
         try {
+            
             let KeyClient = localStorage.getItem("KeyClient");
-            if (KeyClient != "undefined")
+            if (KeyClient != "undefined" && KeyClient)
                 if (KeyClient.length > 0) {
                     params["KeyClient"] = KeyClient;
-                    console.log("params", params);
                 }
 
             if (!params.EmpresaID) {
@@ -51,7 +51,7 @@ export const RAPI = (uri, params) => {
             };
 
             request(options, (err, response, body) => {
-                console.log("retorno", err, response, body);
+                console.log("retorno");
 
                 if (err || response.statusCode == 404) {
                     return retornoMetodo(

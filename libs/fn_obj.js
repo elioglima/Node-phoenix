@@ -22,15 +22,25 @@ const FindFieldToValue = (FieldFind, Obj) => {
 module.exports.FindFieldToValue = (FieldFind, Obj) =>
     FindFieldToValue(FieldFind, Obj);
 
-module.exports.Parse = (Value, Modelo) => {
+module.exports.Parse = (Value, Modelo, JsonLimpo = false) => {
+
+    /*
+        JsonLimpo 
+        quando o json de modelo estiver uma determinada 
+        tag e no value nao conter nao apresentar no novo json
+    */
+
     if (!Array.isArray(Value)) {
         let NewModelo = Assign(Modelo);
         Object.keys(NewModelo).forEach(v => {
             if (FindFieldToValue(v, Value)) {
                 NewModelo[v] = FindFieldToValue(v, Value);
-            } else NewModelo[v] = Modelo[v];
+            } else if (JsonLimpo === false) {
+                NewModelo[v] = Modelo[v];
+            }
         });
-
+        
+        // console.log('ok 123456', JsonLimpo, NewModelo)
         return JSON.parse(JSON.stringify(NewModelo));
     }
 
@@ -45,6 +55,10 @@ module.exports.Parse = (Value, Modelo) => {
         Object.keys(NewModeloTemp).forEach(v => {
             if (FindFieldToValue(v, element)) {
                 NewModeloTemp[v] = FindFieldToValue(v, element);
+                if (!bAdd) bAdd = true;
+            } else if (JsonLimpo === false) {
+                console.log('ok lllllllllllll')
+                NewModeloTemp[v] = Modelo[v];
                 if (!bAdd) bAdd = true;
             }
         });

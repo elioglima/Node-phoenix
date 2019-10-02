@@ -32,6 +32,9 @@ export default class index extends Component {
                         {...this.props}
                         {...this.state}
                         onPesquisarKey={this.props.onPesquisarKey}
+                        onDoubleDblClickSetStatePesquisa={this.props.onDoubleDblClickSetStatePesquisa}
+                        setStatePesquisa={this.props.setStatePesquisa}
+                        onChangeHeaderPesquisaInput={this.props.onChangeHeaderPesquisaInput}
                     />
                 );
 

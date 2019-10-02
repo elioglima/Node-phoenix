@@ -8,5 +8,6 @@ module.exports = {
     Doc1: "",
     Doc2: "",
     CategoriaID: 0,
-    Nick: ""
+    Nick: "",
+    TestTESTE:'123'
 };

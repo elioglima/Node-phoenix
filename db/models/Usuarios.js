@@ -25,6 +25,45 @@ let UsuarioSchema = new Schema(
 let Usuario = mongoose.model("Usuario", UsuarioSchema);
 module.exports = Usuario;
 
+FormatarJsonRetornoClient = (retorno) => {
+
+    if (!retorno) {
+        return {
+            Mensagem: "Nenhum registro localizado",
+            TotalRegistros: 0,
+            Registros: []
+        }
+    }
+
+    let Registros = JSON.parse(JSON.stringify(retorno));
+
+    if (!Registros) {
+        return {
+            Mensagem: "Nenhum registro localizado",
+            TotalRegistros: 0,
+            Registros: []
+        }
+    }
+
+    if (Array.isArray(Registros)) {
+        for (let index = 0; index < Registros.length; index++) {
+            delete Registros[index].PSWD;
+            let ANome = Registros[index].Nome.toString().split(" ");
+            Registros[index].Nick = ANome[0] + " " + ANome[ANome.length - 1];
+        }
+    } else {
+        delete Registros.PSWD;
+        let ANome = Registros.Nome.toString().split(" ");
+        Registros.Nick = ANome[0] + " " + ANome[ANome.length - 1];
+    }
+
+    return {
+        Mensagem: "Registro localizado",
+        TotalRegistros: Array.isArray(Registros) ? Registros.length : 1,
+        Registros: Array.isArray(Registros) ? Registros : [Registros],
+    }
+}
+
 const Find = dados =>
     new Promise(async resolve => {
         const query = Usuario.find(dados);
@@ -46,15 +85,17 @@ const Todos = Dados =>
         return resolve({ retorno: obj });
     });
 
-const FindId = Dados =>
-    Find({
+const FindId = Dados => {
+    return Find({
         EmpresaID: Dados.EmpresaID,
-        _id: mongoose.Types.ObjectId(Dados._id)
+        _id: Dados._id
     });
+}
+
 
 module.exports.Editar = dados =>
     new Promise(async resolve => {
-        return await Usuario.findById(dados._id, function(err, doc) {
+        return await Usuario.findById(dados._id, function (err, doc) {
             if (err)
                 return resolve({
                     RetornoMetodo: { Erro: true, Response: err }
@@ -63,14 +104,33 @@ module.exports.Editar = dados =>
             let DadosAr = Object.keys(dados);
             for (let iDadosAr = 0; iDadosAr < DadosAr.length; iDadosAr++) {
                 const element = DadosAr[iDadosAr];
+
+                if (element == 'Nick') {
+                    let ANome = dados['Nome'].toString().split(" ");
+                    dados[element] = ANome.length > 1 ? ANome[0] + " " + ANome[ANome.length - 1] : dados['Nome']
+                }
+
                 doc[element] = dados[element];
             }
 
             doc.save()
-                .then(resultado =>
-                    resolve({
-                        RetornoMetodo: { Erro: false, Response: resultado }
-                    })
+                .then(resultado => {
+                    try {
+
+                        Registros = FormatarJsonRetornoClient(resultado)
+
+                        resolve({
+                            RetornoMetodo: {
+                                Erro: false,
+                                Mensagem: 'Dados gravados com sucesso.',
+                                Response: Registros
+                            }
+                        })
+
+                    } catch (err) {
+                        resolve({ RetornoMetodo: { Erro: true, Response: err } })
+                    }
+                }
                 )
                 .catch(err =>
                     resolve({ RetornoMetodo: { Erro: true, Response: err } })
@@ -147,16 +207,6 @@ const FindNome = Dados =>
         return resolve({ retorno: docs });
     });
 
-const LikeNome = dados =>
-    new Promise(async resolve => {
-        const query = Usuario.find({
-            EmpresaID: dados.EmpresaID,
-            Nome: new RegExp(dados.nome, "i")
-        });
-        query instanceof mongoose.Query;
-        const docs = await query;
-        return resolve({ retorno: docs });
-    });
 
 const FindMail = Dados =>
     new Promise(async resolve => {
@@ -239,12 +289,26 @@ FindLogar = dados =>
         return resolve({ retorno: docs });
     });
 
+const LikeNome = dados =>
+    new Promise(async resolve => {
+        console.log(dados.Nome)
+        const query = Usuario.find({
+            EmpresaID: dados.EmpresaID,
+            Nome: new RegExp(dados.Nome, "i")
+        });
+        query instanceof mongoose.Query;
+        const docs = await query;
+        let Registros = FormatarJsonRetornoClient(docs)
+        console.log(Registros)
+        return resolve({ retorno: Registros });
+    });
+
 module.exports.Find = Find;
 module.exports.FindId = FindId;
 module.exports.Todos = Dados => Todos(Dados);
+module.exports.LikeNome = Dados => LikeNome(Dados);
 module.exports.FindLogar = Dados => FindLogar(Dados);
 module.exports.FindNome = Dados => FindNome(Dados);
-module.exports.LikeNome = Dados => LikeNome(Dados);
 module.exports.FindMail = Dados => FindMail(Dados);
 module.exports.LikeMail = Dados => LikeMail(Dados);
 module.exports.Novo = () => Novo();

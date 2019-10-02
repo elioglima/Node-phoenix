@@ -16,14 +16,7 @@ import {
     GRUPO_MENU_TITULO_BOTOES,
     DIV_BLOCO
 } from "./css/styled";
-import { get } from "https";
 import moment from "moment";
-
-const Menus = [
-    {
-        Titulo: "Lista de Usuários"
-    }
-];
 
 export default class Objeto extends Component {
     constructor(props) {
@@ -73,7 +66,7 @@ export default class Objeto extends Component {
             <GRUPO_MENU>
                 <GRUPO_MENU_TITULO>
                     <GRUPO_MENU_TITULO_LABEL>
-                        Lista de Usuários
+                        Cadastro de Usuários
                     </GRUPO_MENU_TITULO_LABEL>
                     <GRUPO_MENU_TITULO_BOTOES>
                         <span onClick={e => this.onClickGravar()}>Gravar</span>
@@ -87,7 +80,6 @@ export default class Objeto extends Component {
                     <DIV_BLOCO width="10%">
                         <label>Data Cadastro</label>
                         <TextField
-                            type="text"
                             value={libDate.FormatDateTime(
                                 "dd/mm/yyyy",
                                 libDate.ParseStrToDate(this.state.Data)

@@ -12,7 +12,7 @@ module.exports = req => {
 
             let ModelCadatro = {
                 EmpresaID: 0,
-                Documento: "",
+                TextoPesquisa: '',
                 PSWD: "",
                 KeyClient: "",
                 Token: ""
@@ -20,7 +20,6 @@ module.exports = req => {
 
             let r = libObj.Parse(req, ModelCadatro);
 
-            // console.log("ok", r);
             if (r.KeyClient.length === 0) {
                 RetornoClient.Erro = true;
                 RetornoClient.Mensagem = "Client não autorizado :: 5001";
