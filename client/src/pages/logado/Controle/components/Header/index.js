@@ -16,6 +16,13 @@ class Objeto extends Component {
     constructor(props) {
         super(props);
     }
+
+    onPesquisarKey = e => {
+        if (e.keyCode != 13) return false;
+        if (!this.props.onPesquisarKey) return false;
+        this.props.onPesquisarKey(true);
+    };
+
     render() {
         return (
             <HeaderBase>
@@ -25,7 +32,11 @@ class Objeto extends Component {
                         width="40px"
                         height="40px"
                     />
-                    <PesquisaInput type="text" placeholder={"pesquisar"} />
+                    <PesquisaInput
+                        type="text"
+                        placeholder={"pesquisar"}
+                        onKeyUp={this.onPesquisarKey}
+                    />
                 </Pesquisa>
 
                 <Notificacoes>

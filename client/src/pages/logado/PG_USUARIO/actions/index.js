@@ -1,4 +1,9 @@
 import * as APP from "../../../src/applications";
+import { RAPI } from "../../../src/request-api";
+
+export const dispRAPI = (uri, params) => dispatch => {
+    return RAPI(uri, params);
+};
 
 export const dispRota = rota => dispatch => {
     return dispatch(APP.dispRota(rota));

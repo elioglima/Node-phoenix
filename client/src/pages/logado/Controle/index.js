@@ -42,7 +42,9 @@ class Objeto extends Component {
             date,
             year,
             time,
-            data_exibicao: day + "/" + month + "/" + year + " " + time
+            data_exibicao: day + "/" + month + "/" + year + " " + time,
+
+            StateKeyPesquisa: false
         };
 
         this.countingSecond = this.countingSecond.bind(this);
@@ -50,24 +52,28 @@ class Objeto extends Component {
 
     componentDidMount = () => {
         let KeyClient = localStorage.getItem("KeyClient");
-        if (KeyClient.length > 0) {
-            let TKC = require("../../src/token")(KeyClient);
-            if (TKC.Erro) {
-                localStorage.setItem("KeyClient", "");
-            } else if (TKC.Resultado.Expirou == true) {
-                localStorage.setItem("KeyClient", "");
-            } else if (!TKC.Resultado.Dados) {
-                this.props.dispSair();
-            } else if (!TKC.Resultado.Dados.Logado) {
-                this.props.dispSair();
-            }
-
-            this.setState({
-                Perfil: TKC.Resultado.Dados.Usr
-            });
-        } else {
+        if (KeyClient == "undefined") {
+            return this.props.dispSair();
+        } else if (!KeyClient) {
+            return this.props.dispSair();
+        } else if (KeyClient.length == 0) {
             return this.props.dispSair();
         }
+
+        let TKC = require("../../src/token")(KeyClient);
+        if (TKC.Erro) {
+            localStorage.setItem("KeyClient", "");
+        } else if (TKC.Resultado.Expirou == true) {
+            localStorage.setItem("KeyClient", "");
+        } else if (!TKC.Resultado.Dados) {
+            this.props.dispSair();
+        } else if (!TKC.Resultado.Dados.Logado) {
+            this.props.dispSair();
+        }
+
+        this.setState({
+            Perfil: TKC.Resultado.Dados.Usr
+        });
 
         this.timeout = setInterval(this.countingSecond, 1000);
     };
@@ -99,6 +105,12 @@ class Objeto extends Component {
                 this.state.time
         });
     }
+
+    onPesquisarKey = value => {
+        this.setState({
+            StateKeyPesquisa: value
+        });
+    };
 
     render() {
         return (
@@ -146,11 +158,16 @@ class Objeto extends Component {
                     </div>
 
                     <div className="base-container">
-                        <Header {...this.props} {...this.state} />
+                        <Header
+                            {...this.props}
+                            {...this.state}
+                            onPesquisarKey={this.onPesquisarKey.bind()}
+                        />
                         <RenderBody
                             {...this.props}
                             {...this.state}
                             onSelecionaPagina={this.onSelecionaPagina}
+                            onPesquisarKey={this.onPesquisarKey.bind()}
                         />
                     </div>
                 </div>

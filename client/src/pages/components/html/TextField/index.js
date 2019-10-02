@@ -5,7 +5,13 @@ import "../../../components/css/TextField/index.css";
 class Objeto extends Component {
     constructor(props) {
         super(props);
+
+        console.log("ok", props);
+        let format = "";
+        if (props.format) if (props.format.length > 0) format = props.format;
+
         this.state = {
+            format,
             id: "CompReact" + props.nome,
             nome: props.nome,
             tipo: props.tipo,
@@ -20,7 +26,19 @@ class Objeto extends Component {
         };
     }
 
+    componentDidMount() {
+        this.setState({
+            valor: this.props.valor
+        });
+    }
+
     formatValue = value => {
+        if (this.state.format.length == 0)
+            return {
+                erro: false,
+                valor: value.toString()
+            };
+
         let valor = value;
         let error = false;
 

@@ -34,28 +34,49 @@ const Menus = [
 export default class Objeto extends Component {
     constructor(props) {
         super(props);
-        console.log(props);
+        this.state = {
+            Registros: [],
+            TotalRegistros: 0
+        };
     }
 
-    getMenu = menu => {
+    componentDidUpdate() {
+        if (this.props.StateKeyPesquisa == true) {
+            this.props.onPesquisarKey(false);
+            this.LoadPesquisa();
+        }
+    }
+
+    componentDidMount() {
+        this.LoadPesquisa();
+    }
+
+    getMenu = usuario => {
         return (
-            <MENU_ACESSO
-                onClick={e => {
-                    this.props.dispRota(menu.Rota);
-                }}
-            >
-                <MENU_BASE onClick={e => this.props.onClickEditar(menu.Id)}>
-                    <MENU_TITULO>{menu.Nome}</MENU_TITULO>
-                    <MENU_DESC>{menu.Atualizado}</MENU_DESC>
-                    <MENU_DESC>{menu.Documento}</MENU_DESC>
-                    <MENU_DESC>{menu.Email}</MENU_DESC>
+            <MENU_ACESSO onClick={e => this.props.onClickEditar(usuario._id)}>
+                <MENU_BASE>
+                    <MENU_TITULO>{usuario.Nome}</MENU_TITULO>
+                    <MENU_DESC>{usuario.Doc1}</MENU_DESC>
+                    <MENU_DESC>{usuario.Email}</MENU_DESC>
                 </MENU_BASE>
             </MENU_ACESSO>
         );
     };
 
+    LoadPesquisa = async () => {
+        let { retornoMetoto } = await this.props.dispRAPI(
+            "/usuarios/pesquisar/filtro",
+            {}
+        );
+        if (retornoMetoto.Erro == false) {
+            this.setState({
+                Registros: retornoMetoto.Response.Registros,
+                TotalRegistros: retornoMetoto.Response.TotalRegistros
+            });
+        }
+    };
+
     render() {
-        // console.log(this.props);
         return Menus.map(Grupo => {
             return (
                 <GRUPO_MENU>
@@ -70,8 +91,8 @@ export default class Objeto extends Component {
                         </GRUPO_MENU_TITULO_BOTOES>
                     </GRUPO_MENU_TITULO>
                     <GRUPO_MENU_ICONES>
-                        {Grupo.Itens.map(menu => {
-                            return this.getMenu(menu);
+                        {this.state.Registros.map(Usuario => {
+                            return this.getMenu(Usuario);
                         })}
                     </GRUPO_MENU_ICONES>
                 </GRUPO_MENU>

@@ -8,6 +8,7 @@ import "./css/styles.css";
 import Passo01 from "./Passo01";
 import Passo02 from "./Passo02";
 import { timingSafeEqual } from "crypto";
+import { parse } from "querystring";
 
 class Objeto extends Component {
     constructor(props) {
@@ -26,22 +27,22 @@ class Objeto extends Component {
         };
 
         let KeyClient = localStorage.getItem("KeyClient");
-        if (KeyClient.length > 0) {
-            let TKC = require("../src/token")(KeyClient);
-            if (TKC.Erro) {
-                localStorage.setItem("KeyClient", "");
-            } else if (TKC.Expirou == true) {
-                localStorage.setItem("KeyClient", "");
-            } else if (!TKC.Resultado.Dados) {
-                localStorage.setItem("KeyClient", "");
-            } else if (!TKC.Resultado.Dados.Logado) {
-                localStorage.setItem("KeyClient", "");
+        if (KeyClient != "undefined")
+            if (KeyClient.length > 0) {
+                let TKC = require("../src/token")(KeyClient);
+                if (TKC.Erro) {
+                    localStorage.setItem("KeyClient", "");
+                } else if (TKC.Expirou == true) {
+                    localStorage.setItem("KeyClient", "");
+                } else if (!TKC.Resultado.Dados) {
+                    localStorage.setItem("KeyClient", "");
+                } else if (!TKC.Resultado.Dados.Logado) {
+                    localStorage.setItem("KeyClient", "");
+                }
+                if (TKC.Resultado.Dados.Logado == true) {
+                    return this.props.dispPainelControle();
+                }
             }
-            console.log(TKC);
-            if (TKC.Resultado.Dados.Logado == true) {
-                return this.props.dispPainelControle();
-            }
-        }
     }
 
     componentDidMount = () => {
@@ -78,6 +79,10 @@ class Objeto extends Component {
                     EmpresaID: this.state.EmpresaIDFieldValue,
                     Documento: this.state.DocCadastroFieldValue
                 };
+                localStorage.setItem(
+                    "EmpresaID",
+                    parseInt(this.state.EmpresaIDFieldValue)
+                );
             } else if (iPagina === 3) {
                 url = "acesso/logar";
                 if (this.state.PSWDCadastroFieldValue.length === 0) {
@@ -91,8 +96,7 @@ class Objeto extends Component {
                     Documento: this.state.DocCadastroFieldValue,
                     PSWD: require("../../libs/fn_hash").sha256(
                         this.state.PSWDCadastroFieldValue
-                    ),
-                    KeyClient: this.state.KeyClient
+                    )
                 };
             }
 
@@ -122,7 +126,6 @@ class Objeto extends Component {
             }
 
             KeyClient = retornoMetoto.Response.KeyClient;
-            localStorage.setItem("KeyClient", KeyClient);
         }
         if (iPagina === 3) {
             return this.props.dispPainelControle();

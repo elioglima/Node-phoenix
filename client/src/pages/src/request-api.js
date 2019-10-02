@@ -25,6 +25,17 @@ export const RAPI = (uri, params) => {
         };
 
         try {
+            let KeyClient = localStorage.getItem("KeyClient");
+            if (KeyClient != "undefined")
+                if (KeyClient.length > 0) {
+                    params["KeyClient"] = KeyClient;
+                    console.log("params", params);
+                }
+
+            if (!params.EmpresaID) {
+                params["EmpresaID"] = localStorage.getItem("EmpresaID");
+            }
+
             const options = {
                 url: URLS,
                 method: "POST",
@@ -40,6 +51,8 @@ export const RAPI = (uri, params) => {
             };
 
             request(options, (err, response, body) => {
+                console.log("retorno", err, response, body);
+
                 if (err || response.statusCode == 404) {
                     return retornoMetodo(
                         "Servidor Offiline",
@@ -64,6 +77,14 @@ export const RAPI = (uri, params) => {
                         response.Erro
                     );
                 }
+                console.log("localstorage");
+                if (
+                    body.Response.KeyClient &&
+                    body.Response.KeyClient.length > 0
+                ) {
+                    localStorage.setItem("KeyClient", body.Response.KeyClient);
+                }
+
                 return retornoMetodo(body.Response, body.Mensagem, body.Status);
             });
         } catch (error) {

@@ -1,5 +1,16 @@
 import styled from "styled-components";
 
+export const DIV_BLOCO = styled.div`
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 10px 10px 10px 10px;
+    width: ${props => props.width};
+
+    label {
+    }
+`;
+
 export const GRUPO_MENU = styled.div`
     display: block;
     border-radius: 10px;

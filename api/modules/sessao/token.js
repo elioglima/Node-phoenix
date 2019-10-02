@@ -14,7 +14,7 @@ GTK = dados => {
     };
 };
 
-DTK = token_str => {
+module.exports.DTK = token_str => {
     let Obj = require("../../../libs/fn_cryp").Decode(token_str);
     if (Obj.Erro == true) {
         return {
@@ -36,7 +36,6 @@ DTK = token_str => {
 };
 
 module.exports.GTK = GTK;
-module.exports.DTK = DTK;
 
 // console.log("inicio");
 // let token = GTk({});

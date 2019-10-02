@@ -13,14 +13,15 @@ export default class Objeto extends Component {
     }
 
     onClickEditar = id_selecionado => {
+        console.log("editando", id_selecionado);
         this.setState({
             sub_pagina: "SUB_CADASTRO",
             status_pagina: "EDITAR",
-            id_selecionado
+            id_selecionado: id_selecionado
         });
     };
 
-    onClickNovo = () => {
+    onClickNovo = async () => {
         this.setState({
             sub_pagina: "SUB_CADASTRO",
             status_pagina: "NOVO",
@@ -54,6 +55,7 @@ export default class Objeto extends Component {
                         onClickNovo={this.onClickNovo.bind()}
                         onClickEditar={this.onClickEditar.bind()}
                         onClickSubPagina={this.onClickSubPagina.bind()}
+                        onPesquisarKey={this.props.onPesquisarKey}
                     />
                 );
             case "SUB_CADASTRO":
@@ -73,6 +75,7 @@ export default class Objeto extends Component {
                         onClickNovo={this.onClickNovo.bind()}
                         onClickEditar={this.onClickEditar.bind()}
                         onClickSubPagina={this.onClickSubPagina.bind()}
+                        PesquisarKey={this.props.PesquisarKey}
                     />
                 );
         }

@@ -1,5 +1,6 @@
 const libObj = require("../../../../libs/fn_obj");
 // const libDoc = require("../../../../libs/fn_docs");
+
 module.exports = req => {
     return new Promise((resolve, reject) => {
         try {
@@ -19,17 +20,17 @@ module.exports = req => {
 
             let r = libObj.Parse(req, ModelCadatro);
 
+            // console.log("ok", r);
             if (r.KeyClient.length === 0) {
                 RetornoClient.Erro = true;
                 RetornoClient.Mensagem = "Client não autorizado :: 5001";
                 return resolve(RetornoClient);
             }
 
-            r.Token = require("../../sessao/token").DTK(r.KeyClient);
-
+            r.Token = require("../../sessao/validacao").Execute(r.KeyClient);
             if (r.Token.Erro == true) {
                 RetornoClient.Erro = true;
-                RetornoClient.Mensagem = "Client não autorizado :: 5002";
+                RetornoClient.Mensagem = r.Token.Mensagem;
                 return resolve(RetornoClient);
             }
 
@@ -39,22 +40,11 @@ module.exports = req => {
                 return resolve(RetornoClient);
             }
 
-            if (!r.Documento.length === 0) {
-                RetornoClient.Erro = true;
-                RetornoClient.Mensagem = "Informe :: (Documento)";
-                return resolve(RetornoClient);
-            }
-
-            if (r.PSWD.length === 0) {
-                RetornoClient.Erro = true;
-                RetornoClient.Mensagem = "Informe :: (PSWD)";
-                return resolve(RetornoClient);
-            }
-
             RetornoClient.Sattus = 200;
             RetornoClient.Erro = false;
             RetornoClient.Mensagem = "Sucesso";
             RetornoClient.Response = r;
+
             return resolve(RetornoClient);
         } catch (error) {
             RetornoClient.Sattus = 500;

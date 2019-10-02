@@ -4,6 +4,12 @@ const router = express.Router();
 router.post("/novo", require("../../modules/usuarios/novo"));
 router.post("/editar", require("../../modules/usuarios/editar"));
 router.post("/apagar", require("../../modules/usuarios/apagar"));
+router.post("/gravar", require("../../modules/usuarios/gravar"));
+
+router.post(
+    "/pesquisar/filtro",
+    require("../../modules/usuarios/pesquisar_filtro")
+);
 
 router.post(
     "/pesquisar/codigo",

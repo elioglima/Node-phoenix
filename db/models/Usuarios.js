@@ -16,7 +16,8 @@ let UsuarioSchema = new Schema(
         Doc2: { type: String },
         PSWD: { type: String },
         CategoriaID: { type: Number },
-        KeyUser: { type: String }
+        KeyUser: { type: String },
+        Nick: { type: String }
     },
     { collection: "Usuario" }
 );
@@ -46,14 +47,9 @@ const Todos = Dados =>
     });
 
 const FindId = Dados =>
-    new Promise(async resolve => {
-        const query = Usuario.find({
-            EmpresaID: Dados.EmpresaID,
-            _id: Dados._id.toString()
-        });
-        query instanceof mongoose.Query;
-        const obj = await query;
-        return resolve({ retorno: obj });
+    Find({
+        EmpresaID: Dados.EmpresaID,
+        _id: mongoose.Types.ObjectId(Dados._id)
     });
 
 module.exports.Editar = dados =>
@@ -243,6 +239,7 @@ FindLogar = dados =>
         return resolve({ retorno: docs });
     });
 
+module.exports.Find = Find;
 module.exports.FindId = FindId;
 module.exports.Todos = Dados => Todos(Dados);
 module.exports.FindLogar = Dados => FindLogar(Dados);

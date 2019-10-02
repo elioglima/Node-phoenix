@@ -27,7 +27,13 @@ export default class index extends Component {
             case "PG_MODULO":
                 return <MODULO {...this.props} {...this.state} />;
             case "PG_USUARIO":
-                return <USUARIO {...this.props} {...this.state} />;
+                return (
+                    <USUARIO
+                        {...this.props}
+                        {...this.state}
+                        onPesquisarKey={this.props.onPesquisarKey}
+                    />
+                );
 
             default:
                 return <div />;

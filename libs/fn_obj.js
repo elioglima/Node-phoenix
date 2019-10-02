@@ -28,10 +28,10 @@ module.exports.Parse = (Value, Modelo) => {
         Object.keys(NewModelo).forEach(v => {
             if (FindFieldToValue(v, Value)) {
                 NewModelo[v] = FindFieldToValue(v, Value);
-            }
+            } else NewModelo[v] = Modelo[v];
         });
 
-        return NewModelo;
+        return JSON.parse(JSON.stringify(NewModelo));
     }
 
     if (Value.length === 0) return;
@@ -54,5 +54,5 @@ module.exports.Parse = (Value, Modelo) => {
         }
     }
 
-    return Modelos;
+    return JSON.parse(JSON.stringify(Modelos));
 };
