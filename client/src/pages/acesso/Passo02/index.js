@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import ButtonField from "../../components/html/ButtonField";
-import SenhaAcesso from "../../components/html/TextField";
+import SenhaAcesso from "../../components/html/PassWordField";
 import { FotoUser } from "./css/styled";
 
 import "./css/styles.css";

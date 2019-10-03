@@ -1,24 +1,11 @@
 import React, { Component } from "react";
-import { TextField } from "../../../../../components/html/css/TextField/styled";
+import TextField from "../../../../../components/html/TextField";
 import libDate from "../../../../../../libs/fn_date";
-
-import {
-    GRUPO_MENU,
-    GRUPO_MENU_TITULO,
-    GRUPO_MENU_ICONES,
-    MENU_ACESSO,
-    MENU_ACESSO_IMG,
-    MENU_BASE,
-    MENU_TITULO,
-    MENU_DESC,
-    MENU_REGS,
-    GRUPO_MENU_TITULO_LABEL,
-    GRUPO_MENU_TITULO_BOTOES,
-    DIV_BLOCO
-} from "./css/styled";
+import { BASE_CAD, TITULO, TITULO_LABEL, TITULO_BOTOES, REGISTROS } from "./css/styled";
 import moment from "moment";
 
 export default class Objeto extends Component {
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -51,95 +38,33 @@ export default class Objeto extends Component {
         data.Doc1 = this.state.Doc1;
         data.Doc2 = this.state.Doc2;
         data.Email = this.state.Email;
-        data.Nick = this.state.Nick;
 
-        let { retornoMetoto } = await this.props.dispRAPI(
-            "/usuarios/gravar",
-            data
-        );
-
-        console.log("Resultado de gravat", data, retornoMetoto);
+        let { retornoMetoto } = await this.props.dispRAPI("/usuarios/gravar",data);
+        console.log("Resultado do metodo gravar", data, retornoMetoto);
     };
+
+    onChangeInput = (e, retorno) => {
+        if (!retorno) return
+        return this.setState({[retorno.nome]: retorno.valor})
+    }
 
     render() {
         return (
-            <GRUPO_MENU>
-                <GRUPO_MENU_TITULO>
-                    <GRUPO_MENU_TITULO_LABEL>
-                        Cadastro de Usuários
-                    </GRUPO_MENU_TITULO_LABEL>
-                    <GRUPO_MENU_TITULO_BOTOES>
-                        <span onClick={e => this.onClickGravar()}>Gravar</span>
-                    </GRUPO_MENU_TITULO_BOTOES>
-                </GRUPO_MENU_TITULO>
-                <GRUPO_MENU_ICONES>
-                    <DIV_BLOCO width={"15%"}>
-                        <label>Código</label>
-                        <TextField type="text" value={this.state._id} />
-                    </DIV_BLOCO>
-                    <DIV_BLOCO width="10%">
-                        <label>Data Cadastro</label>
-                        <TextField
-                            value={libDate.FormatDateTime(
-                                "dd/mm/yyyy",
-                                libDate.ParseStrToDate(this.state.Data)
-                            )}
-                        />
-                    </DIV_BLOCO>
-                    <DIV_BLOCO>
-                        <label>Nome Completo</label>
-                        <TextField
-                            type="text"
-                            value={this.state.Nome}
-                            onChange={e => {
-                                this, this.setState({ Nome: e.target.value });
-                            }}
-                        />
-                    </DIV_BLOCO>
-                    <DIV_BLOCO>
-                        <label>CPF/ CNPJ</label>
-                        <TextField
-                            type="text"
-                            value={this.state.Doc1}
-                            onChange={e => {
-                                this, this.setState({ Doc1: e.target.value });
-                            }}
-                        />
-                    </DIV_BLOCO>
-                    <DIV_BLOCO>
-                        <label>CPF/ CNPJ</label>
-                        <TextField
-                            type="text"
-                            value={this.state.Doc2}
-                            onChange={e => {
-                                this, this.setState({ Doc2: e.target.value });
-                            }}
-                        />
-                    </DIV_BLOCO>
-
-                    <DIV_BLOCO>
-                        <label>E-Mail</label>
-                        <TextField
-                            type="text"
-                            value={this.state.Email}
-                            onChange={e => {
-                                this, this.setState({ Email: e.target.value });
-                            }}
-                        />
-                    </DIV_BLOCO>
-
-                    <DIV_BLOCO>
-                        <label>Nick</label>
-                        <TextField
-                            type="text"
-                            value={this.state.Nick}
-                            onChange={e => {
-                                this, this.setState({ Nick: e.target.value });
-                            }}
-                        />
-                    </DIV_BLOCO>
-                </GRUPO_MENU_ICONES>
-            </GRUPO_MENU>
+            <BASE_CAD>
+                <TITULO>
+                    <TITULO_LABEL>Cadastro de Usuários</TITULO_LABEL>
+                    <TITULO_BOTOES><span onClick={e => this.onClickGravar()}>Gravar</span></TITULO_BOTOES>
+                </TITULO>
+                <REGISTROS>
+                    <TextField type="text" nome={'_id'} titulo="Código" valor={this.state._id}/>
+                    <TextField type="text" nome={'Data'} titulo="Data Cadastro" valor={libDate.FormatDateTime("dd/mm/yyyy",libDate.ParseStrToDate(this.state.Data))} onChange={this.onChangeInput.bind()} />
+                    <TextField type="text" nome={'Nome'} titulo="Nome Completo" valor={this.state.Nome} onChange={this.onChangeInput.bind()} />
+                    <TextField type="text" nome={'Doc1'} titulo="Doc1" valor={this.state.Doc1} onChange={this.onChangeInput.bind()} />
+                    <TextField type="text" nome={'Doc2'} titulo="Doc2" valor={this.state.Doc2} onChange={this.onChangeInput.bind()} />
+                    <TextField type="text" nome={'email'} titulo="email" valor={this.state.Doc2} onChange={this.onChangeInput.bind()} />
+                    <TextField type="text" nome={'Nick'} titulo="Nick" valor={this.state.Nick}/>
+                </REGISTROS>
+            </BASE_CAD>
         );
     }
 }

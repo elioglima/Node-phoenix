@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { CompReactTextFieldControl, CompReactTextFieldControlLabel, CompReactTextFieldControlInput, CompReactTextFieldControlLabelErro } from './styled'
+import "../../../components/css/TextField/index.css";
 
 class Objeto extends Component {
     constructor(props) {
         super(props);
 
+        console.log("ok", props);
         let format = "";
         if (props.format) if (props.format.length > 0) format = props.format;
 
@@ -14,6 +15,7 @@ class Objeto extends Component {
             id: "CompReact" + props.nome,
             nome: props.nome,
             tipo: props.tipo,
+            valor: props.valor,
             placeholder: props.placeholder,
             titulo: props.titulo,
             erro: props.erro,
@@ -24,12 +26,16 @@ class Objeto extends Component {
         };
     }
 
+    componentDidMount() {
+        this.setState({
+            valor: this.props.valor
+        });
+    }
+
     formatValue = value => {
-        
         if (this.state.format.length == 0)
             return {
                 erro: false,
-                nome: this.state.nome,
                 valor: value.toString()
             };
 
@@ -54,7 +60,6 @@ class Objeto extends Component {
 
         return {
             erro: error,
-            nome: this.state.nome,
             valor: valor.toString()
         };
     };
@@ -65,7 +70,7 @@ class Objeto extends Component {
         if (retorno.erro == true) return;
         this.setState({ valor: retorno.valor });
         if (!this.props.onChange) return;
-        this.props.onChange(e, retorno);
+        this.props.onChange(retorno);
     };
 
     onKeyUp = e => {
@@ -75,15 +80,17 @@ class Objeto extends Component {
 
     render() {
         return (
-            <CompReactTextFieldControl key={this.props.id}>
-                <CompReactTextFieldControlLabel>{this.state.titulo}</CompReactTextFieldControlLabel>
-                <CompReactTextFieldControlInput>
+            <div key={this.props.id} className="CompReactTextFieldControl">
+                <div className="CompReactTextFieldControlLabel">
+                    {this.state.titulo}
+                </div>
+                <div className="CompReactTextFieldControlInput">
                     <input
                         type={this.state.tipo}
                         className={this.state.className}
                         id={this.state.id}
                         name={this.state.id}
-                        value={this.props.valor}
+                        value={this.state.valor}
                         onChange={e => this.onChange(e)}
                         onKeyUp={e => this.onKeyUp(e)}
                         placeholder={this.state.placeholder}
@@ -91,8 +98,8 @@ class Objeto extends Component {
                     <span className="CompReactTextFieldControlLabelErro">
                         {this.props.MsgErro}
                     </span>
-                </CompReactTextFieldControlInput>
-            </CompReactTextFieldControl>
+                </div>
+            </div>
         );
     }
 }
