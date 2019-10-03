@@ -7,6 +7,13 @@ export const dispPainelControle = e => dispatch => {
     dispatch(push("/painel"));
 };
 
+export const dispModulos = e => dispatch => {
+    if (e && e !== null) {
+        e.preventDefault();
+    }
+    dispatch(push("/modulos"));
+};
+
 export const dispHome = e => dispatch => {
     if (e !== null) {
         e.preventDefault();

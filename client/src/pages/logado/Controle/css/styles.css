@@ -5,7 +5,7 @@ body {
 
 .container {
     display: flex;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     flex-direction: row;
     justify-content: center;
@@ -17,7 +17,9 @@ body {
 .container .sidebar {
     display: flex;
     height: 100%;
-    width: 30%;
+    width: 10%;
+    min-width: 250px;
+    max-width: 400px;
     border-right: 1px solid rgb(218, 218, 218);
     -webkit-box-shadow: 0px 0px 8px 2px rgb(209, 209, 209);
     -moz-box-shadow: 0px 0px 8px 2px rgb(209, 209, 209);
@@ -76,9 +78,15 @@ body {
 
 .container .base-container {
     align-items: flex-start;
-    width: 78%;
     height: 100%;
-    margin-left: 0.01%;
+    width: 100%;
+}
+
+.base-container-body-scrool {
+    display: flex;
+    overflow-y:auto;
+    height: 93%;
+    flex-direction: column;
 }
 
 .container .base-container .base-top .perfil .perfil-foto {

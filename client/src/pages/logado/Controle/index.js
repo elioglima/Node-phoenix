@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import "./css/styles.css";
 import MenuItem from "./components/MenuItem";
 import BotaoSairSistema from "./components/BotaoSairSistema";
 import Header from "./components/Header";
 import LogoDev from "../../components/LogoDev";
 import RelogioDisplay from "./components/RelogioDisplay";
-import { LogoEmpresa } from "./css/styled";
 import RenderBody from "./bodys";
+import { LogoEmpresa } from "./css/styled";
+import "./css/styles.css";
 
 class Objeto extends Component {
 
@@ -75,7 +75,6 @@ class Objeto extends Component {
     }
     
     setStatePesquisa = (value) => {
-        console.log('click', value)
         this.setState({
             StateKeyPesquisaDblClick: value
         });
@@ -123,16 +122,19 @@ class Objeto extends Component {
                             onChangeHeaderPesquisaInput={this.onChangeHeaderPesquisaInput.bind()}
                             onPesquisarKey={this.onPesquisarKey.bind()}
                             onDoubleDblClickSetStatePesquisa={this.onDoubleDblClickSetStatePesquisa.bind()}
-                        />
-                        <RenderBody
-                            {...this.props}
-                            {...this.state}
-                            onSelecionaPagina={this.onSelecionaPagina}
-                            onPesquisarKey={this.onPesquisarKey.bind()}
-                            onDoubleDblClickSetStatePesquisa={this.onDoubleDblClickSetStatePesquisa.bind()}
-                            setStatePesquisa={this.setStatePesquisa.bind()}
-                            onChangeHeaderPesquisaInput={this.onChangeHeaderPesquisaInput.bind()}
-                        />
+                        />   
+
+                        <div className="base-container-body-scrool">
+                            <RenderBody
+                                {...this.props}
+                                {...this.state}
+                                onSelecionaPagina={this.onSelecionaPagina}
+                                onPesquisarKey={this.onPesquisarKey.bind()}
+                                onDoubleDblClickSetStatePesquisa={this.onDoubleDblClickSetStatePesquisa.bind()}
+                                setStatePesquisa={this.setStatePesquisa.bind()}
+                                onChangeHeaderPesquisaInput={this.onChangeHeaderPesquisaInput.bind()}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>

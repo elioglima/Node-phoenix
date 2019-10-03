@@ -7,6 +7,10 @@ export const dispPainelControle = e => dispatch => {
     return dispatch(RoutesAction.dispPainelControle(e));
 };
 
+export const dispModulos = e => dispatch => {
+    return dispatch(RoutesAction.dispModulos(e));
+};
+
 export const dispRAPI = (uri, params) => dispatch => {
     return RAPI(uri, params);
 };

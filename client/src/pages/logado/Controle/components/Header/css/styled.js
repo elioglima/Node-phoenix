@@ -3,22 +3,23 @@ import styled from "styled-components";
 export const HeaderBase = styled.div`
     display: flex;
     align-items: flex-start;
-    width: 100%;
-    height: 6%;
     background-color: #fff;
     border: none;
     border-bottom: 1px solid rgb(218, 218, 218);
+    width:100%;
 `;
 
 export const Perfil = styled.div`
     display: flex;
-    width: 90px;
+    width: 80px;
     margin: auto 4px;
     padding-right: 10px;
 `;
 
 export const PerfilFoto = styled.div`
-    float: left;
+    display:flex;
+    width: 35px;
+    height: 32px;
     margin-right: 2%;
     background: url(${props => props.src}) no-repeat;
     background-size: 100%;
@@ -27,8 +28,6 @@ export const PerfilFoto = styled.div`
     border-radius: 50%;
     display: flex;
     border: 2px solid rgb(73, 151, 230);
-    width: 40px;
-    height: 38px;
 `;
 
 export const Dropdown = styled.div`
@@ -46,23 +45,24 @@ export const Notificacoes = styled.div`
 
 export const SVGNotificacoes = styled.svg`
     margin-left: auto;
-    margin-top: 5px;
+    margin-top: 3px;
 `;
 
 export const Pesquisa = styled.div`
     display: flex;
     align-items: flex-start;
     width: 100%;
-    padding: 8px 8px 8px 8px;
+    padding: 5px 3px 3px 3px;
 `;
 
 export const PesquisaImg = styled.img``;
 
 export const PesquisaInput = styled.input`
+    display:flex;
+    flex-direction:column;
     margin-top: 2px;
-    width: 100%;
-    height: 35px;
     border: none;
+    line-height:30px;
 
     font-size: 15px;
     letter-spacing: 2px;

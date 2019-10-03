@@ -6,8 +6,8 @@ export const BASE = styled.div`
     font-family: "Roboto";
     font-weight: bold;
     background-color: #f4f4f4;
-    flex-direction: row-reverse;
-    justify-content:space-between;
+    flex-direction: row;
+    justify-content:end;
     align-items:center;
 `;
 export const EXIBICAO = styled.div`
@@ -17,6 +17,7 @@ export const EXIBICAO = styled.div`
 `;
 export const ICONE = styled.img`
     display: flex;
-    width: 29px;
+    width: 28px;
+    padding-right:4%;
     color: #868686;
 `;

@@ -128,7 +128,7 @@ class Objeto extends Component {
             KeyClient = retornoMetoto.Response.KeyClient;
         }
         if (iPagina === 3) {
-            return this.props.dispPainelControle();
+            return this.props.dispModulos();
         }
         this.setState({
             pagina: iPagina,

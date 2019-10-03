@@ -54,8 +54,7 @@ class Objeto extends Component {
 
                 <Notificacoes>
                     <SVGNotificacoes
-                        width="47"
-                        height="43"
+                        width="40"
                         viewBox="0 0 37 33"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"

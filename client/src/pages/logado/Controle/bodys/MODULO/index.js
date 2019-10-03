@@ -81,11 +81,7 @@ export default class Objeto extends Component {
                         }
                     />
                 </MENU_ACESSO_IMG>
-                <MENU_BASE>
-                    <MENU_TITULO>{menu.Titulo}</MENU_TITULO>
-                    <MENU_DESC>{menu.Descricao}</MENU_DESC>
-                </MENU_BASE>
-                <MENU_REGS>{menu.Registro}</MENU_REGS>
+                <MENU_TITULO>{menu.Titulo}</MENU_TITULO>
             </MENU_ACESSO>
         );
     };

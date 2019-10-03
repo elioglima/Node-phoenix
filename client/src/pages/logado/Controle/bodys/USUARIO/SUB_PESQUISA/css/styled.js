@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 export const GRUPO_MENU = styled.div`
-    display: block;
+    display: flex;
     border-radius: 10px;
     padding: 10px 10px 10px 10px;
+    flex-direction:column;
 `;
 
 export const GRUPO_MENU_TITULO = styled.div`
     display: flex;
-    justify-content: space-between;
     padding: 10px 10px 10px 10px;
     background-color: #f0f0f0;
     border-top-left-radius: 10px;
@@ -16,9 +16,9 @@ export const GRUPO_MENU_TITULO = styled.div`
     color: #8a8a8a;
 `;
 export const GRUPO_MENU_ICONES = styled.div`
-    display: flex;
+    display: flex;    
     min-height: 30px;
-    background-color: #f4f4f4;
+    background-color: #f4f4f5;
     padding: 10px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;

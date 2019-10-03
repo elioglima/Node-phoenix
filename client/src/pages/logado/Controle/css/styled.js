@@ -7,7 +7,7 @@ export const LogoEmpresa = styled.div`
     height: 20%;
     background: url(${props => props.src}) no-repeat;
     background-size: 50%;
-    background-position: 50% 50%;
+    background-position: 50% 60%;
     margin-top: auto;
     margin-bottom: 20px;
 `;

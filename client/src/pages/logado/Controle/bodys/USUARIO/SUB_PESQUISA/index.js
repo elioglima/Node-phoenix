@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { push } from "connected-react-router";
-
+import DataGrid from '../../../../../components/html/DataGrid'
 import {
     GRUPO_MENU,
     GRUPO_MENU_TITULO,
@@ -74,8 +73,7 @@ export default class Objeto extends Component {
                     </GRUPO_MENU_TITULO_BOTOES>
                 </GRUPO_MENU_TITULO>
                 <GRUPO_MENU_ICONES>
-                    {
-                        (() => {
+                    { (() => {
                             if (this.state.Registros.length == 0) 
                                 return 'Nenhum registro localizado.'
                             
@@ -83,9 +81,10 @@ export default class Objeto extends Component {
                                 return this.getMenu(key, Usuario);
                             })
                         })()
-
-                    }
+                        }
                 </GRUPO_MENU_ICONES>
+                <br />
+                <DataGrid />
             </GRUPO_MENU>
         )
     }

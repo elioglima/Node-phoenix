@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const GRUPO_MENU = styled.div`
-    display: block;
+    display: flex;
+    flex-direction:column;
     border-radius: 10px;
     padding: 10px 10px 10px 10px;
 `;
@@ -15,7 +16,8 @@ export const GRUPO_MENU_TITULO = styled.div`
     color: #8a8a8a;
 `;
 export const GRUPO_MENU_ICONES = styled.div`
-    display: flex;
+    display: flex;    
+    flex-wrap:wrap;
     min-height: 30px;
     background-color: #f4f4f4;
     padding: 10px;
@@ -23,13 +25,14 @@ export const GRUPO_MENU_ICONES = styled.div`
 
 export const MENU_ACESSO = styled.div`
     display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 25%;
+    align-items: center;    
+    flex-direction:column;
+    width: 150px;    
     background-color: #fff;
     border-radius: 10px;
     border: 1px solid #dadada;
     margin-right: 10px;
+    margin-bottom:10px;
 `;
 
 export const MENU_ACESSO_IMG = styled.div`
@@ -37,12 +40,9 @@ export const MENU_ACESSO_IMG = styled.div`
     padding: 15px 15px 15px 15px;
 `;
 
-export const MENU_BASE = styled.div`
-    display: block;
-`;
 export const MENU_TITULO = styled.div`
     display: flex;
-    padding: 15px 10px 5px 0px;
+    padding-bottom:10px;
     color: #929292;
 `;
 export const MENU_DESC = styled.div`
