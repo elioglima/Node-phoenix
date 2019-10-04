@@ -54,7 +54,7 @@ export default class Objeto extends Component {
         }
     }
 
-    render() {
+    render() { 
         switch (this.state.sub_pagina) {
             case "SUB_PESQUISA":
                 return (

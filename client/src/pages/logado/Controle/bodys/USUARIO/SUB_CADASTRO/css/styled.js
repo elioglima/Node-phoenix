@@ -44,7 +44,6 @@ export const TITULO_BOTOES = styled.div`
     }
 `;
 
-
 export const REGISTROS = styled.div`
     display: flex;
     min-height: 30px;
@@ -53,4 +52,3 @@ export const REGISTROS = styled.div`
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 `;
-

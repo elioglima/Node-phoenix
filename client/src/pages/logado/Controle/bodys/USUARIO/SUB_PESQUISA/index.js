@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import DataGrid from '../../../../../components/html/DataGrid'
+import DataGrid from "../../../../../components/html/DataGrid";
 import {
     GRUPO_MENU,
     GRUPO_MENU_TITULO,
@@ -14,16 +14,30 @@ import {
     GRUPO_MENU_TITULO_BOTOES
 } from "./css/styled";
 
+const DataGridColunas = [
+    {
+        name: "nome",
+        title: "Nome Completo"
+    },
+    {
+        name: "doc1",
+        title: "Documento"
+    }
+];
+
 export default class Objeto extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            dgColunas: DataGridColunas,
+            dgLinhas: [],
             Registros: [],
             TotalRegistros: 0
         };
     }
 
     componentDidUpdate() {
+        console.log("componentDidUpdate");
         if (this.props.StateKeyPesquisa == true) {
             this.props.onPesquisarKey(false);
             this.LoadPesquisa();
@@ -36,7 +50,10 @@ export default class Objeto extends Component {
 
     getMenu = (key, usuario) => {
         return (
-            <MENU_ACESSO key={key + "MA"} onClick={e => this.props.onClickEditar(usuario._id)}>
+            <MENU_ACESSO
+                key={key + "MA"}
+                onClick={e => this.props.onClickEditar(usuario._id)}
+            >
                 <MENU_BASE key={key + "MB"}>
                     <MENU_TITULO key={key + "MT"}>{usuario.Nome}</MENU_TITULO>
                     <MENU_DESC key={key + "MD1"}>{usuario.Doc1}</MENU_DESC>
@@ -47,19 +64,40 @@ export default class Objeto extends Component {
     };
 
     LoadPesquisa = async () => {
+        console.log("1");
         let { retornoMetoto } = await this.props.dispRAPI(
             "/usuarios/pesquisar/filtro",
             { TextoPesquisa: this.props.HeaderPesquisaInputValue }
         );
+        console.log("2");
+
         if (retornoMetoto.Erro == false) {
+            console.log("3");
+
+            let DataGridLinhas = [];
+            retornoMetoto.Response.Registros.forEach(element => {
+                console.log("4");
+
+                let Linha = [element.Nome, element.Doc1];
+                DataGridLinhas.push(Linha);
+            });
+
+            console.log("5");
+
             this.setState({
+                dgLinhas: DataGridLinhas,
                 Registros: retornoMetoto.Response.Registros,
                 TotalRegistros: retornoMetoto.Response.TotalRegistros
             });
+
+            console.log("6", DataGridLinhas, this.state.dgLinhas);
+            this.render();
         }
     };
 
     render() {
+        console.log("10");
+
         return (
             <GRUPO_MENU>
                 <GRUPO_MENU_TITULO>
@@ -69,23 +107,26 @@ export default class Objeto extends Component {
                     <GRUPO_MENU_TITULO_BOTOES>
                         <span onClick={e => this.props.onClickNovo()}>
                             Novo
-                            </span>
+                        </span>
                     </GRUPO_MENU_TITULO_BOTOES>
                 </GRUPO_MENU_TITULO>
                 <GRUPO_MENU_ICONES>
-                    { (() => {
-                            if (this.state.Registros.length == 0) 
-                                return 'Nenhum registro localizado.'
-                            
-                            return this.state.Registros.map((Usuario, key) => {
-                                return this.getMenu(key, Usuario);
-                            })
-                        })()
-                        }
+                    {(() => {
+                        if (this.state.Registros.length == 0)
+                            return "Nenhum registro localizado.";
+
+                        return this.state.Registros.map((Usuario, key) => {
+                            return this.getMenu(key, Usuario);
+                        });
+                    })()}
                 </GRUPO_MENU_ICONES>
                 <br />
-                <DataGrid />
+                {console.log("this.state.dgLinhas", this.state.dgLinhas)}
+                <DataGrid
+                    dgColunas={DataGridColunas}
+                    dgLinhas={this.state.dgLinhas}
+                />
             </GRUPO_MENU>
-        )
+        );
     }
 }

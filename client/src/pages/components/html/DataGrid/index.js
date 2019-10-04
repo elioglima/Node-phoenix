@@ -1,59 +1,64 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from "react";
 import {
     BASE,
     Caption,
-    Thead,
-    TheadTR,
-    TheadTrTh,
-    TBody,
-    TBodyTr,
-    TBodyTrTd
-} from './styled'
+    Titulo,
+    TituloColuna,
+    BaseLinha,
+    Linhas,
+    LinhasColuna
+} from "./styled";
 
-const Colunas = [
-    { 
-        name: 'nome', 
-        title:'Nome Completo' 
-    },{ 
-        name: 'nome', 
-        title:'Documento' 
-    }
-]
+export default props => {
+    console.log("ok", props);
+    const [dgColunas, setdgColunas] = useState(
+        props.dgColunas ? props.dgColunas : []
+    );
+    const [dgLinhas, setdgLinhas] = useState(
+        props.dgLinhas ? props.dgLinhas : []
+    );
 
-const Rows = [
-    ['Elio Gonçalves de Lima', '216.399.218-77'] 
-]
+    useEffect(() => {
+        setdgLinhas(props.dgLinhas);
+    });
 
-class index extends Component {
-    render() {
-        return (
-            <BASE>
-                <Caption>Lista de Usuários</Caption>
-                <Thead>
-                    {Colunas.map(c => {
-                        return <TheadTrTh>{c.title}</TheadTrTh>
-                    })}
-                </Thead>
-                    <TBody>
-                        { Rows.map(r => {
+    return (
+        <BASE>
+            <Caption>Lista de Usuários</Caption>
+            <Titulo>
+                {dgColunas.map(c => {
+                    return (
+                        <TituloColuna width={100 / dgColunas.length + "%"}>
+                            {c.title}
+                        </TituloColuna>
+                    );
+                })}
+            </Titulo>
+            <BaseLinha>
+                {dgLinhas.map(r => {
+                    return (
+                        <Linhas>
+                            {r.map(c => {
                                 return (
-                                    <TBodyTr>
-                                        {r.map(c => {
-                                                return <TBodyTrTd>{c}</TBodyTrTd>
-                                        })}
-                                    </TBodyTr>
-                                )
-                         }) }
-                    </TBody>
-                    {/* <tfoot>
+                                    <LinhasColuna
+                                        width={100 / dgColunas.length + "%"}
+                                    >
+                                        {c}
+                                    </LinhasColuna>
+                                );
+                            })}
+                        </Linhas>
+                    );
+                })}
+            </BaseLinha>
+            {/* <tfoot>
                         <tr>
                             <th>Name</th>
                             <th>Instrument</th>
                         </tr>
                     </tfoot> */}
-            </BASE>
-        );
-    }
-}
+        </BASE>
+    );
 
-export default index;
+    return <div />;
+};
