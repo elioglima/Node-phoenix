@@ -28,7 +28,7 @@ const DropDownListData = [
 export default (props) => {
     return (
         <Base>
-            <Controle>
+            {/* <Controle>
                 <Header>
                     <HeaderTitulo>Histórico</HeaderTitulo>
                     <HeaderActions>
@@ -48,7 +48,7 @@ export default (props) => {
                     </BoxPedidoFooter>
                 </BoxPedido>
                 
-            </Controle>
+            </Controle> */}
         </Base>
     )
 }
