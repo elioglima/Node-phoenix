@@ -87,6 +87,9 @@ body {
     overflow-y:auto;
     height: 93%;
     flex-direction: column;
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .container .base-container .base-top .perfil .perfil-foto {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import {
     BASE,
     Caption,
@@ -9,8 +10,8 @@ import {
     LinhasColuna
 } from "./styled";
 
-export default props => {
-    console.log("ok", props);
+import libObj from '../../../../libs/fn_obj'
+export default (props) => {
     const [dgColunas, setdgColunas] = useState(
         props.dgColunas ? props.dgColunas : []
     );
@@ -18,15 +19,16 @@ export default props => {
         props.dgLinhas ? props.dgLinhas : []
     );
 
-    useEffect(() => {
+    useEffect(() => {        
         setdgLinhas(props.dgLinhas);
     });
-
+    
     return (
         <BASE>
             <Caption>Lista de Usuários</Caption>
             <Titulo>
                 {dgColunas.map(c => {
+                    if (c.hide == true) return;
                     return (
                         <TituloColuna width={100 / dgColunas.length + "%"}>
                             {c.title}
@@ -37,8 +39,14 @@ export default props => {
             <BaseLinha>
                 {dgLinhas.map(r => {
                     return (
-                        <Linhas>
-                            {r.map(c => {
+                        <Linhas onClick={e => {
+                            console.log('vrf', r)
+                            if (!props.onClickEditar) return false;
+                            if (!r[0]) return false;
+                            props.onClickEditar(r[0])
+                        }}>
+                            {r.map((c, key) => {
+                                if (dgColunas[key].hide == true) return;
                                 return (
                                     <LinhasColuna
                                         width={100 / dgColunas.length + "%"}
@@ -59,6 +67,4 @@ export default props => {
                     </tfoot> */}
         </BASE>
     );
-
-    return <div />;
 };

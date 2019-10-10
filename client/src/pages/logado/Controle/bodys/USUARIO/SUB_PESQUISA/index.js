@@ -16,11 +16,14 @@ import {
 
 const DataGridColunas = [
     {
-        name: "nome",
+        name: "_id",
+        hide: true
+    },{
+        name: "Nome",
         title: "Nome Completo"
     },
     {
-        name: "doc1",
+        name: "Doc1",
         title: "Documento"
     }
 ];
@@ -64,25 +67,21 @@ export default class Objeto extends Component {
     };
 
     LoadPesquisa = async () => {
-        console.log("1");
         let { retornoMetoto } = await this.props.dispRAPI(
             "/usuarios/pesquisar/filtro",
             { TextoPesquisa: this.props.HeaderPesquisaInputValue }
         );
-        console.log("2");
 
         if (retornoMetoto.Erro == false) {
-            console.log("3");
 
             let DataGridLinhas = [];
             retornoMetoto.Response.Registros.forEach(element => {
-                console.log("4");
-
-                let Linha = [element.Nome, element.Doc1];
+                let Linha = [];
+                DataGridColunas.map(c => {
+                    Linha.push(element[c.name]);
+                })
                 DataGridLinhas.push(Linha);
             });
-
-            console.log("5");
 
             this.setState({
                 dgLinhas: DataGridLinhas,
@@ -90,19 +89,17 @@ export default class Objeto extends Component {
                 TotalRegistros: retornoMetoto.Response.TotalRegistros
             });
 
-            console.log("6", DataGridLinhas, this.state.dgLinhas);
             this.render();
         }
     };
 
     render() {
-        console.log("10");
 
         return (
             <GRUPO_MENU>
                 <GRUPO_MENU_TITULO>
                     <GRUPO_MENU_TITULO_LABEL>
-                        Lista de Usuários
+                        Usuários Acessado Recentemente
                     </GRUPO_MENU_TITULO_LABEL>
                     <GRUPO_MENU_TITULO_BOTOES>
                         <span onClick={e => this.props.onClickNovo()}>
@@ -121,10 +118,10 @@ export default class Objeto extends Component {
                     })()}
                 </GRUPO_MENU_ICONES>
                 <br />
-                {console.log("this.state.dgLinhas", this.state.dgLinhas)}
                 <DataGrid
                     dgColunas={DataGridColunas}
                     dgLinhas={this.state.dgLinhas}
+                    onClickEditar={this.props.onClickEditar}
                 />
             </GRUPO_MENU>
         );
