@@ -1,15 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { push } from "connected-react-router";
+
+import { 
+    StBASE, 
+    StLogoEmpresa, 
+    StCONTAINER,
+    StBaseImputs,
+    StCompReactTextFieldControlLabelErro,
+    StEsqueciMeuEmail,
+    StLINHA
+} from './css/styled';
 
 import libDoc from '../../libs/fn_docs'
 import SelectField from "../../components/html/SelectField";
 import ButtonField from "../../components/html/ButtonField";
 import Documento from "../../components/html/DocField";
-import "./css/styles.css";
 
 import { consultaDocumento } from '../../redux/Actions/consultaDocumento'
-import { logarShow } from '../../redux/Actions/logar'
+import { setShowSate, logarShow } from '../../redux/Actions/show'
 
 const lista = [
     { value: 1, label: "Centro Maxtriz", sel: false },
@@ -21,6 +29,7 @@ const lista = [
 const Classe = () => {
 
     const dispatch = useDispatch()
+    const { disparo } = useSelector(state => state.show)
     const { Registro, KeyClient } = useSelector(state => state.consultaDocumento)
 
     const [EmpresaID, setEmpresaID] = useState(1);
@@ -29,14 +38,17 @@ const Classe = () => {
     const [DocMsgVErroalidacao, setDocMsgVErroalidacao] = useState('');
     
     useEffect(() => {
+        console.log('useEffect',disparo, Registro)
+        if (disparo !== 'logar') return
         if (libDoc.Valida(Registro.Doc1)) {
             dispatch(logarShow({
                 EmpresaID:Registro.EmpresaID,
                 Documento:Registro.Doc1,
                 KeyClient
             }))
+
         }
-    }, [Registro])
+    }, [disparo && Registro])
 
     const OnChangeSelectField = e => {
         setEmpresaID(e)
@@ -47,18 +59,14 @@ const Classe = () => {
     }
     const onProximaPagina = async e => {
         dispatch(consultaDocumento({EmpresaID:EmpresaID, Documento:Doc1}))
+        dispatch(setShowSate({'disparo':'logar'}))
     }
 
     return (
-        <div className="Passo01">
-                <div className="logo">
-                    <img
-                        src={
-                            process.env.PUBLIC_URL + "/images/logo_program.svg"
-                        }
-                    />
-                </div>
-                <div className="inputs">
+        <StBASE>
+            <StCONTAINER>
+                <StLogoEmpresa src={require("../../assets/images/logo_program.svg")} ></StLogoEmpresa>
+                <StBaseImputs>
                     <SelectField
                         nome="tipo"
                         valor={EmpresaID}
@@ -79,17 +87,13 @@ const Classe = () => {
                         valor="Continuar"
                         onCLick={onProximaPagina}
                     />
-                    <span className="CompReactTextFieldControlLabelErro">
-                        {MsgErroSend}
-                    </span> 
-
-                    <div className="linha">
-                        <span className="esquecimeuemail">
-                            esqueci meu email
-                        </span>
-                    </div>
-                </div>
-            </div>
+                    <StCompReactTextFieldControlLabelErro>{MsgErroSend}</StCompReactTextFieldControlLabelErro> 
+                    <StLINHA>
+                        <StEsqueciMeuEmail className="esquecimeuemail">esqueci meu email</StEsqueciMeuEmail>
+                    </StLINHA>
+                </StBaseImputs>
+            </StCONTAINER>
+        </StBASE>
     )
 }
 

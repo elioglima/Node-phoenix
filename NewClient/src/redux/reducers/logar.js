@@ -6,19 +6,12 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {    
     switch (action.type) {
-        case 'LOGAR_SHOW':
-            console.log('LOGAR_SHOW', action.payload)
-            return {
-                ...state,
-                EmpresaID:action.payload.EmpresaID ? action.payload.EmpresaID : -1,
-                KeyClient:action.payload.KeyClient ? action.payload.KeyClient : '',
-                KeyClient:action.payload.Documento ? action.payload.Documento : '',
-            }
-
         case 'LOGAR':
             return [
                 ...state,
+                ...action
             ]
+
         case 'LOGAR_SUCCESS':
             return [
                 ...state,
