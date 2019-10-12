@@ -1,0 +1,30 @@
+
+.CompReactRButtonControl {
+    display: inline-block;
+    padding: 5px 10px 5px 0px;
+}
+
+.CompReactRButtonControl .CompReactRButtonControlInput button {
+    padding: 5px 5px 5px 5px;
+    font-size: 14px;
+    border: 1px solid rgb(66, 114, 168);
+    border-radius: 8px;
+}
+
+.CompReactRButtonControl .CompReactRButtonControlInput .Executar {
+    background-color: darkgreen;
+    color: white;
+    font-size: 13px;
+    padding: 8px 8px 8px 8px;
+    
+}
+
+.CompReactRButtonControl .CompReactRButtonControlInput .Executar:hover {
+    background-color: rgb(44, 138, 44);
+    color: white;
+}
+
+.CompReactRButtonControl .CompReactRButtonControlInput .Executar:active {
+    background-color: rgb(29, 68, 29);
+    color: white;
+}

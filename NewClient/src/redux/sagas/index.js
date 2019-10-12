@@ -1,13 +1,11 @@
 import { all, takeLatest } from 'redux-saga/effects'
-import { consultaDocumento } from '../../pages/Home/redux/sagas'
+import { logar, logarShow } from './logar'
+import { consultaDocumento } from './consultaDocumento'
 
 export default function* rootSaga() {
     yield all([
+        takeLatest('LOGAR', logar),
+        takeLatest('LOGAR_SHOW', logarShow),
         takeLatest('CONSULTA_DOCUMENTO', consultaDocumento),
-        // takeLatest('SOLICITAR_LOGIN', solicitarLogin),
-        // takeLatest('SAVE_METRICS', saveMetrics),        
-        // takeLatest('CONSULTA_CONTRATO', consultarContrato),        
-        // takeLatest('CONSULTA_DIVIDA', consultaDivida),
-        // takeLatest('CONSULTA_BOLETO_ACORDO', consultaBoletoAcordo),
     ])
 }
