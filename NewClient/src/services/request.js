@@ -13,7 +13,8 @@ export default (method, data, timeout = 120000) => {
         const retorno = (err = true, msg = 'Erro Inesperado', obj) => resolve({ retornoMetodo: { err, msg, obj } })
 
         const url = `${BASE_URL_LOCAL}/api/${method}`
-        console.log('url', url, 'data', data)
+        console.log('url', url)
+        console.log('dados de envio', data)
         await axiosInstance({
             method: 'post',
             url,
@@ -21,7 +22,7 @@ export default (method, data, timeout = 120000) => {
             timeout,
             headers,
         }).then((response) => {
-            console.log('request post sucesso', method, response)
+            console.log('dados de retorno', method, response)
 
             if (!response.status)
                 return retorno(true, 'Erro status de resposta não localizado.')

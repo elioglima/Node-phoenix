@@ -77,7 +77,7 @@ class Objeto extends Component {
         return (
             <CompReactTextFieldControl key={this.props.id}>
                 <CompReactTextFieldControlLabel>{this.state.titulo}</CompReactTextFieldControlLabel>
-                <CompReactTextFieldControlInput>
+                <CompReactTextFieldControlInput noBorder={this.props.noBorder}>
                     <input
                         type={this.state.tipo}
                         className={this.state.className}

@@ -4,6 +4,7 @@ import { FotoUser } from "./css/styled";
 import ButtonField from "../../components/html/ButtonField";
 import SenhaAcesso from "../../components/html/PassWordField";
 import { imageURL } from './foto'
+
 import { 
     StBASE,
     StCONTAINER,
@@ -17,30 +18,40 @@ import {
     
 } from './css/styled';
 
+import { logar } from '../../redux/Actions/logar'
 import { setShowSate, acessoShow } from '../../redux/Actions/show'
 
 
 const Objeto = () => {
 
     const dispatch = useDispatch()
-    const [SenhaEncode, setSenhaEncode] = useState(1);
-    const [SenhaEncodeMsgErro, setSenhaEncodeMsgErro] = useState(1);
+    const [SenhaEncode, setSenhaEncode] = useState('123');
+    const [SenhaEncodeMsgErro, setSenhaEncodeMsgErro] = useState('');
     const [MsgErroSend, setMsgErroSend] = useState('');
-    
-
-    const { Registro, KeyClient } = useSelector(state => state.consultaDocumento)
+    const payload_show = useSelector(state => state.show)
+    const dataChange = useSelector(state => state.dataChange)
     
     useEffect(() => {
-        console.log(KeyClient,Registro)
-    }, [])
+        if (!dataChange.err) return
+        setMsgErroSend(dataChange.msg)
+    }, [dataChange])
 
     const onClickVoltar = () => {
-        dispatch(setShowSate({'disparo':''}))
         dispatch(acessoShow({}))
     }
 
     const onChangeSenha = e =>{
         setSenhaEncode(e)
+    }
+
+    const onLogar = e => {
+        dispatch(logar({
+            disparo:'modulos',
+            KeyClient:dataChange.KeyClient, 
+            EmpresaID:dataChange.EmpresaID, 
+            Documento:dataChange.Doc1, 
+            PSWD: require("../../libs/fn_hash").sha256(SenhaEncode)
+        }))
     }
     
     return (
@@ -68,7 +79,7 @@ const Objeto = () => {
                     <ButtonField
                         nome="email"
                         valor="Continuar"
-                        onCLick={e => this.ProximaPagina(e, 3)}
+                        onCLick={onLogar}
                     />
                     <StCompReactTextFieldControlLabelErro>{MsgErroSend}</StCompReactTextFieldControlLabelErro>
                     <StLinha>

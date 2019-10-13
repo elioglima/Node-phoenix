@@ -7,6 +7,13 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {    
     switch (action.type) {
+        case 'SHOW_DISPARO':
+            console.log('SHOW_DISPARO', action.payload)
+            return {
+                ...state,
+                ...action.payload
+            }
+
         case 'SHOW_STATE':
             console.log('SHOW_STATE', action.payload)
             return {

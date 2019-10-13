@@ -30,36 +30,40 @@ const Classe = () => {
 
     const dispatch = useDispatch()
     const { disparo } = useSelector(state => state.show)
-    const { Registro, KeyClient } = useSelector(state => state.consultaDocumento)
+    const data_cd = useSelector(state => state.consultaDocumento)
 
     const [EmpresaID, setEmpresaID] = useState(1);
     const [Doc1, setDoc1] = useState('216.399.218-77');
     const [MsgErroSend, setMsgErroSend] = useState('');
     const [DocMsgVErroalidacao, setDocMsgVErroalidacao] = useState('');
     
-    useEffect(() => {
-        console.log('useEffect',disparo, Registro)
-        if (disparo !== 'logar') return
-        if (libDoc.Valida(Registro.Doc1)) {
-            dispatch(logarShow({
-                EmpresaID:Registro.EmpresaID,
-                Documento:Registro.Doc1,
-                KeyClient
-            }))
+    // useEffect(() => {
+    //     console.log('data_cd.msg',data_cd)
+    //     setMsgErroSend(data_cd.msg)
 
-        }
-    }, [disparo && Registro])
+    //     if (disparo !== 'logar') return
+    //     if (data_cd.TotalRegistros == 0) return
+
+    //     if (libDoc.Valida(data_cd.Registro.Doc1)) {
+    //         dispatch(logarShow({
+    //             EmpresaID:data_cd.Registro.EmpresaID,
+    //             Documento:data_cd.Registro.Doc1,
+    //             KeyClient:data_cd.KeyClient
+    //         }))
+
+    //     }
+
+    // }, [disparo && data_cd.err])
 
     const OnChangeSelectField = e => {
         setEmpresaID(e)
     };
 
     const OnChangeChangeDocs = e => {
-        setDoc1(e)
+        setDoc1(e.valor)
     }
     const onProximaPagina = async e => {
-        dispatch(consultaDocumento({EmpresaID:EmpresaID, Documento:Doc1}))
-        dispatch(setShowSate({'disparo':'logar'}))
+        dispatch(consultaDocumento({disparo:'logar', EmpresaID, Doc1}))
     }
 
     return (

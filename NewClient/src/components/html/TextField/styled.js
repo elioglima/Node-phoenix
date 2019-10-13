@@ -40,7 +40,7 @@ export const CompReactTextFieldControlInput = styled.div`
         font-size: 14px;
         width: 100%;
         border-radius: 5px;
-        border: 1px solid #81BEEB;
+        border: ${props => props.noBorder == true ? 'none' : '1px solid #81BEEB'};
         color: rgb(158, 165, 172);
         font-family: 'Poppins';
         letter-spacing: 2px;

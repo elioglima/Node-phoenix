@@ -1,8 +1,6 @@
 import { call, put } from 'redux-saga/effects'
-import { apiLogar } from '../../services/apiAcessos'
-import { logarSuccess, logarError } from '../Actions/logar'
-import { push } from "connected-react-router";
 import { history } from '../../redux'
+import { dataChange } from '../Actions/dataChange'
 
 
 export function* logarShow({ payload }) {
@@ -11,4 +9,11 @@ export function* logarShow({ payload }) {
 
 export function* acessoShow({ payload }) {
     yield call(history.push, '/acesso');
+}
+
+export function* showDisparo({ payload }) {
+    console.log('showDisparo yield',payload)
+    yield put(dataChange(payload));
+    if (!payload.disparo) return 
+    yield call(history.push, '/'+payload.disparo);
 }
