@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CompReactTextFieldControl = styled.div`
-    float: left;
+    display:flex;
     width: 100%;
 
     ::-webkit-input-placeholder {

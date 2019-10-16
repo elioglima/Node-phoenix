@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 import TextField from '../../components/html/TextField'
 import ImageField from '../../components/html/ImageField'
@@ -15,31 +15,55 @@ import {
     StBodyScrool,
 
     StHeaderBase,
+    StNotificacoes,
+    StMeuPerfil,
 
 } from './css/styles'
 
 
-const CpHeader = () => {
+const CpHeader = (props) => {
     return (
         <StHeaderBase>
             <img src={require('../../assets/images/icoPesquisa.svg')} />
             <TextField noBorder={true} />
+
+            <StNotificacoes>
+                {props.notifications}
+                    {/* <img src={require('../../assets/images/icoNotificacoes.svg')} /> */}
+            </StNotificacoes>
+
+            <StMeuPerfil>
+                    {/* <img src={require('../../assets/images/icoNotificacoes.svg')} />
+                    <span>Elio Lima</span> */}
+            </StMeuPerfil>
         </StHeaderBase>
     )
 }
 
+const CMenuLateral = (props) => {
+    return (
+        <StNav>
+        { props.dados.map(menu => {
+            {console.log(menu)}
+        })
+        }
+        </StNav>
+    )
+}
 export default props => {
+    const [menuLateral, setmenuLateral] = useState([])
+    useEffect(() => {        
+        setmenuLateral(props.menuLateral)
+    }, [props.menuLateral])
 
     return (
         <StPage>
             <StContainer>
                 <StBase>
-                    { props.nav && <StNav>{props.nav}</StNav>}
+                    <CMenuLateral dados={menuLateral} />
                     <StSelection>
-                        { props.header && <StHeader><CpHeader/></StHeader>}
-                        <StBody>
-                            <StBodyScrool>{props.body}</StBodyScrool>
-                        </StBody>
+                        { props.header && <StHeader><CpHeader notifications={props.notifications} /></StHeader>}
+                        <StBody><StBodyScrool>{props.children}</StBodyScrool></StBody>
                         { props.footer && <StFooter>{props.footer}</StFooter>}
                     </StSelection>
                 </StBase>

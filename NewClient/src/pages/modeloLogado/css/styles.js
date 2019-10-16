@@ -74,16 +74,44 @@ export const StBodyScrool = styled.div`
     padding-right: 15px;
 `;
 
-
-
 export const StHeaderBase = styled.div`
     display: flex;
-    background-color:#f777;
+    padding:3px 10px 3px 5px;
     
     img {
         display:flex;
+        margin:3px;
+        width:40px;
+    }
+`;
+
+export const StNotificacoes = styled.div`
+    display: flex;
+    padding:3px;
+    
+    img {
+        display:flex;
+        margin:3px;
+        width:40px;
+    }    
+`;
+
+export const StMeuPerfil = styled.div`
+    display: flex;
+    padding:3px;
+    align-items:center;
+    
+    img {
+        display:flex;
+        margin-left:10px;
+        width:40px;
     }
 
-    
-
+    span {
+        display:flex;
+        margin-left:2px;
+        margin-right:2px;
+        width:max-content;        
+        height:max-content;
+    }
 `;
