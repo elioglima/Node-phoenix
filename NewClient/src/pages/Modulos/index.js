@@ -5,11 +5,33 @@ import ModeloLogado from '../modeloLogado'
 
 const menu = [
     {
+        ico: 'painel',
         text: 'Painel de Controle'
     },
     {
+        ico: 'modulos',
         text: 'Modulos',
-        selected: true
+        actived: true
+    },
+    {
+        ico: 'mensagens',
+        text: 'Mensagem',
+    },
+    {
+        ico: 'contatos',
+        text: 'Contatos',
+    },
+    {
+        ico: 'tasks',
+        text: 'Gerenciador Tarefas',
+    },
+    {
+        ico: 'atendimento',
+        text: 'Atendimento',
+    },
+    {
+        ico: 'mais',
+        text: 'Configuraões',
     }
 ]
 

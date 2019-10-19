@@ -53,7 +53,7 @@ export const StNav = styled.div`
 
 export const StSelection = styled.div`
     display:flex;
-    width: 78%;
+    width: 80%;
     flex-direction:column;
 `;
 

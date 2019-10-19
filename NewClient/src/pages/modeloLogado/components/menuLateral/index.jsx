@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { StNav } from './css'
+import { StBase } from './css'
+import MenuItem from './components/menuItem' 
+import MeuPerfil from './components/meuPerfil' 
 
 const Objeto = (props) => {
     const [lines, setLines] = useState(props.lines || [])
@@ -7,16 +9,18 @@ const Objeto = (props) => {
         setLines(props.lines)
     }, [props.lines])
     return (
-        <StNav>
-        { lines.map(menu => {
+        <StBase>
+            <MeuPerfil  />
+
+        { lines.map((menu, key) => {
             return (
-               <div>
-                {menu.text}
+               <div key={'menu'+key}>
+                    <MenuItem {...menu}   />
                </div>
             )
         })
         }
-        </StNav>
+        </StBase>
     )
 }
 
