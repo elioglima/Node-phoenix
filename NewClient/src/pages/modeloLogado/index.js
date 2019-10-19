@@ -10,7 +10,6 @@ import {
     StHeader,
     StFooter,
     StBase,
-    StNav,
     StSelection,
     StBody,
     StBodyScrool,
