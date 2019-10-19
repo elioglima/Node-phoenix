@@ -14,7 +14,6 @@ import {
     StSelection,
     StBody,
     StBodyScrool,
-
     StHeaderBase,
     StNotificacoes,
     StMeuPerfil,
