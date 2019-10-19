@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import TextField from '../../components/html/TextField'
 import ImageField from '../../components/html/ImageField'
+import MenuLateral from './components/menuLateral'
 
 import {
     StPage,
@@ -40,18 +41,10 @@ const CpHeader = (props) => {
     )
 }
 
-const CMenuLateral = (props) => {
-    return (
-        <StNav>
-        { props.dados.map(menu => {
-            {console.log(menu)}
-        })
-        }
-        </StNav>
-    )
-}
 export default props => {
+    
     const [menuLateral, setmenuLateral] = useState([])
+    
     useEffect(() => {        
         setmenuLateral(props.menuLateral)
     }, [props.menuLateral])
@@ -60,7 +53,7 @@ export default props => {
         <StPage>
             <StContainer>
                 <StBase>
-                    <CMenuLateral dados={menuLateral} />
+                    <MenuLateral lines={menuLateral} />
                     <StSelection>
                         { props.header && <StHeader><CpHeader notifications={props.notifications} /></StHeader>}
                         <StBody><StBodyScrool>{props.children}</StBodyScrool></StBody>

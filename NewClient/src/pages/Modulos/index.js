@@ -6,13 +6,17 @@ import ModeloLogado from '../modeloLogado'
 const menu = [
     {
         text: 'Painel de Controle'
+    },
+    {
+        text: 'Modulos',
+        selected: true
     }
 ]
 
 const Home = () => {
     
     return (
-        <ModeloLogado header={true} nav={menu} selection={'selection'} footer={'notifications'} footer={'footer'} >
+        <ModeloLogado header={true} menuLateral={menu} selection={'selection'} footer={'notifications'} footer={'footer'} >
             teste
             <br/>
             teste
