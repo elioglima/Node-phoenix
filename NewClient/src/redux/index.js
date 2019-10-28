@@ -11,16 +11,20 @@ const middlewares = []
 const sagaMiddleware = createSagaMiddleware()
 middlewares.push(sagaMiddleware)
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 const store = createStore(
     reducers(history),
     compose(
-        applyMiddleware(
-            ...middlewares,
-            routerMiddleware(history)
+        composeEnhancers(
+            applyMiddleware(
+                ...middlewares,
+                routerMiddleware(history)
+            )
         )
     )
 );
 
 sagaMiddleware.run(sagas)
 
-export {store}
+export { store }

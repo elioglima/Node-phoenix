@@ -1,12 +1,20 @@
+
 const INITIAL_STATE = {
-    KeyClient:'',
+    KeyClient: '',
     EmpresaID: -1,
-    Documento:'',
-    disparo:''
+    Documento: '',
+    disparo: ''
 }
 
-export default (state = INITIAL_STATE, action) => {    
+export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
+        case 'SHOW':
+            console.log('SHOW', action.payload)
+            return {
+                ...state,
+                ...action.payload
+            }
+
         case 'SHOW_DISPARO':
             console.log('SHOW_DISPARO', action.payload)
             return {
@@ -26,7 +34,7 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 ...action.payload,
-                disparo:''
+                disparo: ''
             }
 
         case 'ACESSO_SHOW':
@@ -34,7 +42,7 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 ...action.payload,
-                disparo:''
+                disparo: ''
             }
 
         default:

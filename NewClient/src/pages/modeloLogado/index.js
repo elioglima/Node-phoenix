@@ -28,11 +28,11 @@ const CpHeader = (props) => {
 
             <StNotificacoes>
                 {props.notifications}
-                    {/* <img src={require('../../assets/images/icoNotificacoes.svg')} /> */}
+                {/* <img src={require('../../assets/images/icoNotificacoes.svg')} /> */}
             </StNotificacoes>
 
             <StMeuPerfil>
-                    {/* <img src={require('../../assets/images/icoNotificacoes.svg')} />
+                {/* <img src={require('../../assets/images/icoNotificacoes.svg')} />
                     <span>Elio Lima</span> */}
             </StMeuPerfil>
         </StHeaderBase>
@@ -40,10 +40,10 @@ const CpHeader = (props) => {
 }
 
 export default props => {
-    
+
     const [menuLateral, setmenuLateral] = useState([])
-    
-    useEffect(() => {        
+
+    useEffect(() => {
         setmenuLateral(props.menuLateral)
     }, [props.menuLateral])
 
@@ -53,9 +53,9 @@ export default props => {
                 <StBase>
                     <MenuLateral lines={menuLateral} />
                     <StSelection>
-                        { props.header && <StHeader><CpHeader notifications={props.notifications} /></StHeader>}
+                        {props.header && <StHeader><CpHeader notifications={props.notifications} /></StHeader>}
                         <StBody><StBodyScrool>{props.children}</StBodyScrool></StBody>
-                        { props.footer && <StFooter>{props.footer}</StFooter>}
+                        {props.footer && <StFooter>{props.footer}</StFooter>}
                     </StSelection>
                 </StBase>
             </StContainer>
