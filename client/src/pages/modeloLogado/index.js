@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import TextField from '../../components/html/TextField'
 import ImageField from '../../components/html/ImageField'
 import MenuLateral from './components/menuLateral'
+import { controleMenu } from '../../redux/Actions/controleModulos'
+import { menu } from '../constantes'
 
 import {
     StPage,
@@ -17,9 +19,7 @@ import {
     StHeaderBase,
     StNotificacoes,
     StMeuPerfil,
-
 } from './css/styles'
-
 
 const CpHeader = (props) => {
     return (
@@ -29,12 +29,12 @@ const CpHeader = (props) => {
 
             <StNotificacoes>
                 {props.notifications}
-                {/* <img src={require('../../assets/images/icoNotificacoes.svg')} /> */}
+                <img src={require('../../assets/images/icoNotificacoes.svg')} />
             </StNotificacoes>
 
             <StMeuPerfil>
                 {/* <img src={require('../../assets/images/icoNotificacoes.svg')} />
-                    <span>Elio Lima</span> */}
+                <span>Elio Lima</span> */}
             </StMeuPerfil>
         </StHeaderBase>
     )
@@ -42,7 +42,14 @@ const CpHeader = (props) => {
 
 export default props => {
 
+    const dispatch = useDispatch()
     const controleModulos = useSelector(state => state.controleModulos)
+
+    useEffect(() => {
+        if (controleModulos.menu.length == 0) {
+            dispatch(controleMenu(menu))
+        }
+    }, [])
 
     return (
         <StPage>
