@@ -5,7 +5,7 @@ import ButtonField from "../../components/html/ButtonField";
 import SenhaAcesso from "../../components/html/PassWordField";
 import { imageURL } from './foto'
 
-import { 
+import {
     StBASE,
     StCONTAINER,
     StBaseImputs,
@@ -15,7 +15,7 @@ import {
     StCompReactTextFieldControlLabelErro,
     StLinha,
     StEsqueciMinhaSenha
-    
+
 } from './css/styled';
 
 import { logar } from '../../redux/Actions/logar'
@@ -30,7 +30,7 @@ const Objeto = () => {
     const [MsgErroSend, setMsgErroSend] = useState('');
     const payload_show = useSelector(state => state.show)
     const dataChange = useSelector(state => state.dataChange)
-    
+
     useEffect(() => {
         if (!dataChange.err) return
         setMsgErroSend(dataChange.msg)
@@ -40,23 +40,23 @@ const Objeto = () => {
         dispatch(acessoShow({}))
     }
 
-    const onChangeSenha = e =>{
+    const onChangeSenha = e => {
         setSenhaEncode(e)
     }
 
     const onLogar = e => {
         dispatch(logar({
-            disparo:'modulos',
-            KeyClient:dataChange.KeyClient, 
-            EmpresaID:dataChange.EmpresaID, 
-            Documento:dataChange.Doc1, 
+            disparo: 'modulos',
+            KeyClient: dataChange.KeyClient,
+            EmpresaID: dataChange.EmpresaID,
+            Documento: dataChange.Doc1,
             PSWD: require("../../libs/fn_hash").sha256(SenhaEncode)
         }))
     }
-    
+
     return (
         <StBASE>
-        <StCONTAINER>
+            <StCONTAINER>
                 <StLogoEmpresa src={require("../../assets/images/logo_program.svg")} ></StLogoEmpresa>
                 <StBaseImputs>
                     <StBotoesTitle onClick={onClickVoltar}>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 
 import TextField from '../../components/html/TextField'
 import ImageField from '../../components/html/ImageField'
@@ -41,17 +42,13 @@ const CpHeader = (props) => {
 
 export default props => {
 
-    const [menuLateral, setmenuLateral] = useState([])
-
-    useEffect(() => {
-        setmenuLateral(props.menuLateral)
-    }, [props.menuLateral])
+    const controleModulos = useSelector(state => state.controleModulos)
 
     return (
         <StPage>
             <StContainer>
                 <StBase>
-                    <MenuLateral lines={menuLateral} />
+                    <MenuLateral lines={controleModulos.menu} />
                     <StSelection>
                         {props.header && <StHeader><CpHeader notifications={props.notifications} /></StHeader>}
                         <StBody><StBodyScrool>{props.children}</StBodyScrool></StBody>
