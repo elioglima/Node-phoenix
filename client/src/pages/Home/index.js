@@ -1,22 +1,17 @@
-import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import React from 'react'
+
+import {
+    DataGrid,
+    InputText,
+    InputPass
+} from '../../components'
 
 
 const Home = () => {
-    // const dispatch = useDispatch()
-    
-    // useEffect(() => {
-    //     dispatch(saveMetrics({}))
-    // }, [])
-    
+
     return (
         <>
-        tese
-            {/* <Carousel />
-            <Vantagens />
-            <Facilidades />
-            <TypingBanner />
-            <Comments /> */}
+            <InputPass text='123456' />
         </>
     )
 }

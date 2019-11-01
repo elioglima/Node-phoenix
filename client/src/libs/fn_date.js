@@ -46,7 +46,7 @@ module.exports.NowToDHM = () => {
 
 module.exports.adds = (date, interval, units) => {
     var ret = new Date(date);
-    var checkRollover = function() {
+    var checkRollover = function () {
         if (ret.getDate() !== date.getDate()) ret.setDate(0);
     };
     switch (interval.toLowerCase()) {
